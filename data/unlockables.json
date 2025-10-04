@@ -1,0 +1,5 @@
+[
+  {"feature": "dark-mode", "pointsRequired": 100},
+  {"feature": "custom-theme", "pointsRequired": 200},
+  {"feature": "avatar-selection", "pointsRequired": 300}
+]

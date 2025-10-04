@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/gamification.js" defer></script>
 </head>
 <body>
-
+<header>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn" onclick="showDropdown('themes')">Themes
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="themes">
+                <a onclick="switchTheme('light')">Light</a>
+                <a onclick="switchTheme('dark')">Dark</a>
+                <a class="locked" onclick="showLockedMessage()">Locked <i class="fa fa-lock"></i></a>
+            </div>
+        </div>
+        <div class="add-task">
+            <button class="add-task-btn" onclick="">Add Task <i class="fa fa-plus"></i></button>
+        </div>
+        <div class="points">
+             Points: <span id="points">0</span>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="board">
+        <div class="column" id="todo">
+            <h2>Todo</h2>
+            <div class="task">Finish README</div>
+            <div class="task">Style board</div>
+        </div>
+        <div class="column" id="inprogress">
+            <h2>In Progress</h2>
+        </div>
+        <div class="column" id="done">
+            <h2>Done</h2>
+        </div>
+    </div>
+</main>
 </body>
 </html>
