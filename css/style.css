@@ -1,82 +1,199 @@
+/* Root variables for themes and consistent styling */
+:root {
+    /* Fonts */
+    --main-font: 'Segoe UI', Verdana;
+
+    /* Colors */
+    --bg-color: #f5f7fb;
+    --text-color: #111111;
+    --text-muted: #555555;
+    --heading-color: #222222;
+    --label-color: #333333;
+
+    /* Navbar */
+    --navbar-bg: #797b7e;
+    --navbar-hover-bg: #6a6a6c;
+    --navbar-link-color: #fefefe;
+    --navbar-height: 3.5rem;
+
+    /* Cards and columns */
+    --column-bg: #dadada;
+    --card-bg: #ffffff;
+    --task-bg: #ffffff;
+    --drop-over-bg: #dfe7f1;
+
+    /* Borders */
+    --border-color: #babec5;
+    --border-color-hover: #747578;
+
+    /* Buttons */
+    --btn-bg: #efefef;
+    --btn-bg-hover: #dfe7f2;
+    --btn-primary-bg: #111111;
+    --btn-primary-hover-bg: #000000;
+    --btn-secondary-hover-bg: #eee;
+
+    /* Dropdowns */
+    --dropdown-bg: #f9f9f9;
+    --dropdown-hover-bg: #dddddd;
+
+    /* Shadows */
+    --shadow-1: 0 .125em .25em rgba(0, 0, 0, 0.1);
+    --shadow-2: 0 .5em 1em rgba(0, 0, 0, 0.05);
+    --dropdown-shadow: 0 .5em 1em 0 rgba(0, 0, 0, 0.25);
+
+    /* Focus and error states */
+    --focus-border: #3b82f6;
+    --focus-ring: 0 0 0 .15em rgba(59, 130, 246, 0.2);
+    --error-border: #e11d48;
+    --error-ring: 0 0 0 .15em rgba(225, 29, 72, 0.2);
+
+    /* Locked item hover background */
+    --locked-hover-bg: #d33e3e;
+
+    /* Neutral colors for icons */
+    --neutral-600: #6b7280; /* icon/chevron */
+    --neutral-700: #374151; /* icon/chevron focus */
+
+    /* Radius */
+    --radius-1: .25rem;
+    --radius-2: .5rem;
+    --radius-3: .75rem;
+
+    /* Spacing */
+    --spacing-1: .25rem;
+    --spacing-2: .5rem;
+    --spacing-3: .75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+
+    /* Font sizes */
+    --font-size-sm: .8rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+
+    /* Disabled states */
+    --disabled-bg: #e8e8e8;
+    --disabled-text: #9aa3b2;
+
+    /* Custom properties for specific elements */
+    --dropdown-min-width: 160px;
+    --column-min-width: 350px;
+    --column-min-height: 300px;
+    --nav-link-pad-y: 14px;
+    --nav-link-pad-x: 16px;
+    --points-pad-x: 16px;
+    --select-chevron-size: 5px;
+    --select-chevron-right: 12px;
+}
+
+/* Global styles */
 body {
-    background-color: #fefefe;
     margin: 0;
-    user-select: none;
-    font: 16px Helvetica, sans-serif;
+    user-select: none; /* prevent text selection during drag-and-drop */
+    font-family: var(--main-font), sans-serif;
+    background-color: var(--bg-color);
 }
 
-h2 {
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
     text-align: center;
-    margin-top: 1rem;
-    color: #222;
+    margin-top: var(--spacing-md);
+    color: var(--heading-color);
 }
 
+/* Fixed header/navbar */
 header {
     position: fixed;
     width: 100%;
     z-index: 2;
 }
 
+/* Main content padding to avoid overlap with fixed navbar */
 main {
-    padding-top: 4rem;
+    padding-top: var(--navbar-height);
 }
 
+/* Board styles */
 .board {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
 }
 
+/* Column styles */
 .column {
     display: inline-block;
-    background: #dadada;
-    border-radius: 8px;
-    padding: 1rem;
-    min-width: 350px;
-    min-height: 300px;
+    background: var(--column-bg);
+    border-radius: var(--radius-2);
+    padding: var(--spacing-md);
+    min-width: var(--column-min-width);
+    min-height: var(--column-min-height);
 }
 
+/* Delete button aligned to the right */
+.delete-btn {
+    margin-left: auto;
+}
+
+/* Task styles */
 .task {
-    background: white;
-    margin: .5rem 0;
-    padding: .5rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    background: var(--task-bg);
+    margin: var(--spacing-2) 0;
+    padding: var(--spacing-2);
+    border-radius: var(--radius-1);
+    box-shadow: var(--shadow-1);
     cursor: pointer;
 }
 
 .column.drag-over {
-    background: #d9f2ff; /* highlight on drag over */
+    background: var(--drop-over-bg); /* highlight on drag over */
 }
 
 /* Navbar container */
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: center;
+    /*justify-content: center;*/
     overflow: hidden;
-    height: 4rem;
-    background-color: #888;
-
+    height: var(--navbar-height);
+    background-color: var(--navbar-bg);
 }
 
-.add-task, .add-task-btn, .dropdown, .dropbtn, .points {
+/* Make only top-level nav items fill the navbar height */
+.navbar > a,
+.navbar .add-task > a,
+.navbar .dropbtn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 var(--nav-link-pad-x) !important; /* horizontal only to avoid overflow */
+    column-gap: var(--spacing-1); /* space between label and icon */
+}
+
+/* Full height */
+.h100 {
     height: 100%;
 }
 
+/* Points display */
 .points {
     display: flex;
     align-items: center;
+    column-gap: var(--spacing-1);
 }
 
 /* Links inside the navbar */
 .navbar a {
-    float: left;
-    font-size: 16px;
-    color: #fefefe;
+    font-size: var(--font-size-base);
+    color: var(--navbar-link-color);
     text-align: center;
-    padding: 14px 16px;
+    padding: var(--nav-link-pad-y) var(--nav-link-pad-x);
     text-decoration: none;
 }
 
@@ -88,7 +205,7 @@ main {
 
 /* Dropdown button */
 button, .points {
-    font-size: 16px;
+    font-size: var(--font-size-base);
     border: none;
     outline: none;
     color: white;
@@ -97,50 +214,48 @@ button, .points {
     margin: 0; /* Important for vertical align on mobile phones */
 }
 
+/* Buttons have pointer cursor */
 button {
     cursor: pointer;
-    padding: 14px 16px;
+    padding: var(--nav-link-pad-y) var(--nav-link-pad-x);
 }
 
+/* Links have pointer cursor */
 a {
     cursor: pointer;
+    outline: none;
 }
 
+/* background color for navbar links on hover and focus */
+.navbar a:focus, .navbar button:focus, .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: var(--navbar-hover-bg);
+}
+
+/* Points have larger font */
 .points {
-    font-size: 20px;
-    padding: 0 16px;
+    font-size: var(--font-size-lg);
+    padding: 0 var(--points-pad-x);
 }
 
-/* background color for navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: #777;
-}
-
-/* background color for navbar links on hover */
-.add-task:hover .add-task-btn {
-    background-color: #777;
-}
-
+/* Add Task link aligned to the right */
 .add-task {
     margin-left: auto;
-    height: 100%;
 }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.25);
+    background-color: var(--dropdown-bg);
+    min-width: var(--dropdown-min-width);
+    box-shadow: var(--dropdown-shadow);
     z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    float: none;
     color: black;
-    padding: 12px 16px;
+    padding: var(--spacing-3) var(--spacing-md);
     text-decoration: none;
     display: block;
     text-align: left;
@@ -148,14 +263,26 @@ a {
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: var(--dropdown-hover-bg);
+}
+
+/* Styles for locked items */
+a.locked {
+    background-color: var(--disabled-bg);
+    color: var(--disabled-text);
+    cursor: not-allowed;
 }
 
 a:hover.locked {
-    background-color: #d33e3e;
+    background-color: var(--locked-hover-bg);
 }
 
-/* Show the dropdown menu on hover */
+/* Show the dropdown menu on click */
 .show {
     display: block;
+}
+
+/* Add Task page styles */
+.page {
+    background: var(--bg-color);
 }

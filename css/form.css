@@ -1,0 +1,182 @@
+/* Form styles */
+.form-wrapper {
+    min-height: calc(100vh - var(--navbar-height));
+    display: grid;
+    place-items: center;
+}
+
+/* Form card */
+.form-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-3);
+    padding: var(--spacing-lg);
+    width: 100%;
+    max-width: 560px;
+    box-shadow:
+            var(--shadow-1), /* Subtle base shadow */
+            var(--shadow-2); /* Deeper, more diffused shadow */
+}
+
+/* Form heading */
+.form-card h1 {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--heading-color);
+}
+
+/* Form fields */
+.form-field {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Form field labels */
+.form-field label {
+    display: block; /* prevent margin collapse */
+    font-weight: 600;
+    margin-bottom: var(--spacing-2);
+    color: var(--label-color);
+}
+
+/* Input and select styles */
+input, select {
+    font: inherit;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* ensure padding/border stay inside width */
+    padding: var(--spacing-3) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-2);
+    background: var(--card-bg);
+    color: var(--text-color);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+input:hover, select:hover {
+    border-color: var(--border-color-hover);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--focus-border);
+    box-shadow: var(--focus-ring);
+}
+
+/* Missing input error styles */
+.input-error {
+    border-color: var(--error-border) !important;
+    box-shadow: var(--error-ring) !important;
+}
+
+/* Form action buttons */
+.actions {
+    margin-top: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-3);
+    justify-content: flex-end; /* align buttons to the right */
+    flex-wrap: wrap; /* allow wrapping on small screens */
+}
+
+/* Button styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3) var(--spacing-md);
+    border-radius: var(--radius-2);
+    border: 2px solid transparent;
+    background: var(--btn-bg);
+    color: var(--text-color);
+    text-decoration: none; /* remove underline for links */
+    font-weight: 600; /* semi-bold */
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+/* Primary button styles */
+.btn-primary {
+    background: var(--btn-primary-bg);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: var(--btn-primary-hover-bg);
+}
+
+.btn-primary:focus {
+    border-color: var(--focus-border);
+    box-shadow: var(--focus-ring);
+}
+
+/* Secondary button styles */
+.btn-secondary {
+    background: transparent;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background: var(--btn-secondary-hover-bg);
+    border-color: var(--error-border);
+    box-shadow: var(--error-ring);
+}
+
+/* Set the home button position without changing navbar layout */
+.home-btn {
+    position: absolute;
+}
+
+/* Small helper text */
+.helper {
+    margin-top: var(--spacing-lg);
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    justify-self: center;
+}
+
+/* Navbar title styling */
+.navbar-title {
+    color: var(--navbar-link-color);
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+    letter-spacing: 1px;
+    margin: 0 auto; /* Center the title */
+}
+
+/* Remove default appearance for select elements */
+select {
+    appearance: none;
+    font-family: var(--main-font), sans-serif;
+}
+
+/* Enhanced select dropdown styling */
+.select-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrap select {
+    background-image: none; /* remove built-in chevrons */
+    padding-right: 2.75rem; /* space for custom arrow */
+}
+
+/* Custom chevron for select dropdowns */
+.select-wrap::after {
+    font-family: FontAwesome, sans-serif;
+    content: "\f0d7"; /* FontAwesome down arrow */
+    position: absolute;
+    right: var(--select-chevron-right);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--neutral-600);
+}
+
+/* Change chevron color on focus */
+.select-wrap:focus-within::after {
+    color: var(--neutral-700);
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 420px) {
+    /* Stack action buttons vertically */
+    .actions .btn {
+        flex: auto;
+    }
+}
