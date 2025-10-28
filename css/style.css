@@ -148,6 +148,9 @@ main {
     border-radius: var(--radius-1);
     box-shadow: var(--shadow-1);
     cursor: pointer;
+    &:hover {
+        background-color: rgba(159, 144, 144, 0.221);
+    }
 }
 
 .column.drag-over {

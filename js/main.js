@@ -68,11 +68,6 @@ columns.forEach(column => {
     });
 });
 
-function showAddTask() {
-    // load add-task.html
-    window.location.href = 'add-task.html';
-}
-
 function showDropdown(id) {
     document.getElementById(id).classList.toggle("show");
 }
@@ -82,15 +77,18 @@ function showLockedMessage() {
 }
 
 function switchTheme(theme) {
+    const darkLink = document.querySelector('link[href="css/DarkMode.css"]');
     const body = document.body;
-    const themeButton = document.getElementById("theme-button");
+
     if (theme === "dark") {
-        themeButton.textContent = "Dark Mode";
+        darkLink.disabled = false;
+        body.classList.add("dark-mode");
     } else if (theme === "light") {
-        themeButton.textContent = "Light Mode";
+        darkLink.disabled = true;
+        body.classList.remove("dark-mode");
     }
-    body.className = theme;
 }
+
 
 function updateLocalStorage() {
     const tasks = [];
