@@ -1,0 +1,53 @@
+:root {
+    /* Colors */
+    --bg-color: #121212;
+    --text-color: #f1f1f1;
+    --text-muted: #bbb;
+    --heading-color: #e3e3e3;
+    --label-color: #ddd;
+
+    /* Navbar */
+    --navbar-bg: #333;
+    --navbar-hover-bg: #3b3c3c;
+    --navbar-link-color: #f1f1f1;
+
+    /* Cards and columns */
+    --column-bg: #1e1e1e;
+    --card-bg: #2c2c2c;
+    --task-bg: #2c2c2c;
+    --task-bg-hover: #3b3c3c;
+    --drop-over-bg: #303030;
+
+    /* Borders */
+    --border-color: #444;
+    --border-color-hover: #666;
+
+    /* Buttons */
+    --btn-bg: #2c2c2c;
+    --btn-bg-hover: #3b3c3c;
+    --btn-primary-bg: #444;
+    --btn-primary-hover-bg: #555;
+    --btn-secondary-hover-bg: #3a3a3a;
+
+    /* Dropdowns */
+    --dropdown-bg: #2c2c2c;
+    --dropdown-hover-bg: #444;
+
+    /* Shadows */
+    --shadow-1: 0 .125em .25em rgba(0, 0, 0, 0.5);
+    --shadow-2: 0 .5em 1em rgba(0, 0, 0, 0.3);
+    --dropdown-shadow: 0 .5em 1em 0 rgba(0, 0, 0, 0.5);
+
+    /* Focus and error states */
+    --focus-border: #3b82f6;
+    --focus-ring: 0 0 0 .15em rgba(59, 130, 246, 0.4);
+    --error-border: #e11d48;
+    --error-ring: 0 0 0 .15em rgba(225, 29, 72, 0.4);
+
+    /* Disabled states */
+    --disabled-bg: #3a3a3a;
+    --disabled-text: #666;
+
+    /* Locked item hover background */
+    --locked-hover-bg: #d33e3e;
+}

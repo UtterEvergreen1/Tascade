@@ -20,6 +20,7 @@
     --column-bg: #dadada;
     --card-bg: #ffffff;
     --task-bg: #ffffff;
+    --task-bg-hover: #e8e8e8;
     --drop-over-bg: #dfe7f1;
 
     /* Borders */
@@ -48,6 +49,10 @@
     --error-border: #e11d48;
     --error-ring: 0 0 0 .15em rgba(225, 29, 72, 0.2);
 
+    /* Disabled states */
+    --disabled-bg: #e8e8e8;
+    --disabled-text: #9aa3b2;
+
     /* Locked item hover background */
     --locked-hover-bg: #d33e3e;
 
@@ -72,10 +77,6 @@
     --font-size-base: 1rem;
     --font-size-lg: 1.25rem;
     --font-size-xl: 1.5rem;
-
-    /* Disabled states */
-    --disabled-bg: #e8e8e8;
-    --disabled-text: #9aa3b2;
 
     /* Custom properties for specific elements */
     --dropdown-min-width: 160px;
@@ -143,14 +144,16 @@ main {
     display: flex;
     align-items: center;
     background: var(--task-bg);
+    color: var(--text-color);
     margin: var(--spacing-2) 0;
     padding: var(--spacing-2);
     border-radius: var(--radius-1);
     box-shadow: var(--shadow-1);
     cursor: pointer;
-    &:hover {
-        background-color: rgba(159, 144, 144, 0.221);
-    }
+}
+
+.task:hover {
+    background: var(--task-bg-hover);
 }
 
 .column.drag-over {
@@ -257,7 +260,7 @@ a {
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
+    color: var(--text-color);
     padding: var(--spacing-3) var(--spacing-md);
     text-decoration: none;
     display: block;
