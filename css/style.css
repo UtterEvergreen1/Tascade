@@ -116,23 +116,27 @@ main {
     padding-top: var(--navbar-height);
 }
 
-/* Board styles */
+/* Board styles*/
 .board {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
+    justify-content: center;
 }
 
-/* Column styles */
+/* Column Styles*/
 .column {
-    display: inline-block;
+    flex: 1 1 300px;
+    max-width: 30%;
+    min-width: 250px; 
     background: var(--column-bg);
     border-radius: var(--radius-2);
     padding: var(--spacing-md);
-    min-width: var(--column-min-width);
-    min-height: var(--column-min-height);
+    min-height: 30vh;
+    max-height: 80vh;
 }
+
 
 /* Delete button aligned to the right */
 .delete-btn {
