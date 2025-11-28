@@ -1,13 +1,17 @@
-const darkModeLink = document.querySelector('link[href="css/dark.css"]');
-
 function switchTheme(theme) {
-    darkModeLink.disabled = theme !== "dark";
+    const links = document.querySelectorAll('link[data-theme]');
+    links.forEach(link => link.disabled = link.dataset.theme !== theme);
+
+    // Remove old theme class and add the new one
+    document.body.className = document.body.className.replace(/\btheme-\S+/g, '');
+    document.body.classList.add(`theme-${theme}`);
+
     localStorage.setItem("theme", theme);
 }
 
 function loadTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    darkModeLink.disabled = savedTheme !== "dark";
+    const theme = localStorage.getItem("theme") || "light";
+    switchTheme(theme);
 }
 
-loadTheme();
+document.addEventListener("DOMContentLoaded", loadTheme);

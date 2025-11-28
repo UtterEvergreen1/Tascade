@@ -168,10 +168,11 @@ main {
 .navbar {
     display: flex;
     align-items: center;
-    /*justify-content: center;*/
     overflow: hidden;
     height: var(--navbar-height);
     background-color: var(--navbar-bg);
+    padding: 0 var(--spacing-md);
+    justify-content: flex-start;
 }
 
 /* Make only top-level nav items fill the navbar height */
@@ -209,7 +210,7 @@ main {
 
 /* The dropdown container */
 .dropdown {
-    margin-right: auto;
+    margin-right: 0;
     overflow: hidden;
 }
 
@@ -243,8 +244,10 @@ a {
 
 /* Points have larger font */
 .points {
+    margin-left: var(--spacing-2);
     font-size: var(--font-size-lg);
     padding: 0 var(--points-pad-x);
+    font-weight: 600;
 }
 
 /* Add Task link aligned to the right */

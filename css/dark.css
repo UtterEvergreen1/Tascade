@@ -1,4 +1,4 @@
-:root {
+body.theme-dark {
     /* Colors */
     --bg-color: #121212;
     --text-color: #f1f1f1;
@@ -50,4 +50,43 @@
 
     /* Locked item hover background */
     --locked-hover-bg: #d33e3e;
+}
+
+body.theme-dark {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.theme-dark .navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+body.theme-dark .navbar,
+body.theme-dark .navbar .navbar-brand,
+body.theme-dark .navbar .btn,
+body.theme-dark .navbar .nav-link,
+body.theme-dark .navbar .dropbtn,
+body.theme-dark .navbar .points {
+    color: var(--navbar-link-color) !important;
+}
+
+body.theme-dark .card {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.theme-dark .alert {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+body.theme-dark .btn {
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.theme-dark .btn:hover {
+    background-color: var(--btn-bg-hover);
 }

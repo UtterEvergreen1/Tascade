@@ -1,8 +1,15 @@
 let points = parseInt(localStorage.getItem("points")) || 0;
 
 function updatePointsDisplay() {
-    document.getElementById("points").textContent = points.toString();
+    const p = document.getElementById("points");
+    if (p) p.textContent = points.toString();
 }
+
+function updateShopPoints() {
+    const p = document.getElementById("shopPoints");
+    if (p) p.textContent = points.toString();
+}
+
 
 function savePoints() {
     localStorage.setItem("points", points);
@@ -10,3 +17,4 @@ function savePoints() {
 
 // Initialize display on page load
 updatePointsDisplay();
+updateShopPoints();

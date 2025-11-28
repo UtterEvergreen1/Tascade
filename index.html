@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Tascade</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/dark.css" disabled>
+    <link rel="stylesheet" href="css/dark.css" data-theme="dark" disabled>
+    <link rel="stylesheet" href="css/winter.css" data-theme="winter" disabled>
+    <link rel="stylesheet" href="css/spring.css" data-theme="spring" disabled>
+    <link rel="stylesheet" href="css/summer.css" data-theme="summer" disabled>
+    <link rel="stylesheet" href="css/fall.css" data-theme="fall" disabled>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/main.js" defer></script>
     <script src="js/themes.js" defer></script>
@@ -21,7 +25,11 @@
             </button>
             <div class="dropdown-content" id="themes">
                 <a onclick="switchTheme('light')">Light</a>
-                <a onclick="switchTheme('dark')">Dark</a>
+                <a onclick="switchTheme('dark')">Dark 🌘</a>
+                <a onclick="switchTheme('winter')">Winter ❄️</a>
+                <a onclick="switchTheme('spring')">Spring 🌱</a>
+                <a onclick="switchTheme('summer')">Summer ☀️</a>
+                <a onclick="switchTheme('fall')">Fall 🍂</a>
                 <a class="locked" onclick="showLockedMessage()">Locked <i class="fa fa-lock"></i></a>
             </div>
         </div>
