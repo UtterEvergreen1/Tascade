@@ -1,0 +1,91 @@
+/* Summer Theme */
+body.theme-summer {
+    /* Colors */
+    --bg-color: #fff9e6;
+    --text-color: #333333;
+    --text-muted: #666666;
+    --heading-color: #222222;
+    --label-color: #555555;
+
+    /* Navbar */
+    --navbar-bg: #ffeb99;
+    --navbar-hover-bg: #ffe066;
+    --navbar-link-color: #333333;
+
+    /* Cards and columns */
+    --column-bg: #fff7cc;
+    --card-bg: #fffbe6;
+    --task-bg: #fffce6;
+    --task-bg-hover: #fff0b3;
+    --drop-over-bg: #fff4b3;
+
+    /* Borders */
+    --border-color: #ffd966;     
+    --border-color-hover: #ffcc33;
+
+    /* Buttons */
+    --btn-bg: #fff5cc;
+    --btn-bg-hover: #ffe699;
+    --btn-primary-bg: #f9d423;
+    --btn-primary-hover-bg: #f7c600;
+    --btn-secondary-hover-bg: #ffe680;
+
+    /* Dropdowns */
+    --dropdown-bg: #fff7cc;
+    --dropdown-hover-bg: #ffec99;
+
+    /* Shadows */
+    --shadow-1: 0 .125em .25em rgba(0, 0, 0, 0.1);
+    --shadow-2: 0 .5em 1em rgba(0, 0, 0, 0.05);
+    --dropdown-shadow: 0 .5em 1em 0 rgba(0, 0, 0, 0.2);
+
+    /* Focus and error states */
+    --focus-border: #f9d423;
+    --focus-ring: 0 0 0 .15em rgba(249, 212, 35, 0.2);
+    --error-border: #e11d48;
+    --error-ring: 0 0 0 .15em rgba(225, 29, 72, 0.2);
+
+    /* Disabled states */
+    --disabled-bg: #ffe;
+    --disabled-text: #aaa;
+
+    /* Locked item hover background */
+    --locked-hover-bg: #d33e3e;
+}
+
+/* Apply theme variables to page */
+body.theme-summer {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.theme-summer .navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+body.theme-summer .navbar .navbar-brand,
+body.theme-summer .navbar .btn,
+body.theme-summer .navbar .nav-link,
+body.theme-summer .navbar .dropbtn,
+body.theme-summer .navbar .points {
+    color: var(--navbar-link-color) !important;
+}
+
+/* Cards and alerts */
+body.theme-summer .card,
+body.theme-summer .alert {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.theme-summer .btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.theme-summer .btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--border-color-hover);
+}

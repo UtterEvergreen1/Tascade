@@ -299,3 +299,11 @@ a:hover.locked {
 .page {
     background: var(--bg-color);
 }
+
+.container.points-container {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}

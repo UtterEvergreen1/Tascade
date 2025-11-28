@@ -1,0 +1,93 @@
+body.theme-winter {
+    /* Colors */
+    --bg-color: #e6f0fa;
+    --text-color: #0a1f33;
+    --text-muted: #7a8a99;
+    --heading-color: #1a2b40;
+    --label-color: #4d5c6d;
+
+    /* Navbar */
+    --navbar-bg: #cce0f5;
+    --navbar-hover-bg: #b3d1f0;
+    --navbar-link-color: #000000;
+
+    /* Cards and columns */
+    --column-bg: #d9e6f2;
+    --card-bg: #f0f7fb;
+    --task-bg: #f0f7fb;
+    --task-bg-hover: #d0e4f5;
+    --drop-over-bg: #cce0f5;
+
+    /* Borders */
+    --border-color: #a3bcd9;
+    --border-color-hover: #7fa3c2;
+
+    /* Buttons */
+    --btn-bg: #d9e6f2;
+    --btn-bg-hover: #cce0f5;
+    --btn-primary-bg: #99c2eb;
+    --btn-primary-hover-bg: #80b0e6;
+    --btn-secondary-hover-bg: #b3d1f0;
+
+    /* Dropdowns */
+    --dropdown-bg: #e6f0fa;
+    --dropdown-hover-bg: #cce0f5;
+
+    /* Shadows */
+    --shadow-1: 0 .125em .25em rgba(0, 0, 50, 0.2);
+    --shadow-2: 0 .5em 1em rgba(0, 0, 50, 0.15);
+    --dropdown-shadow: 0 .5em 1em 0 rgba(0, 0, 50, 0.2);
+
+    /* Focus and error states */
+    --focus-border: #3399ff;
+    --focus-ring: 0 0 0 .15em rgba(51, 153, 255, 0.4);
+    --error-border: #e11d48;
+    --error-ring: 0 0 0 .15em rgba(225, 29, 72, 0.4);
+
+    /* Disabled states */
+    --disabled-bg: #cce0f5;
+    --disabled-text: #7a8a99;
+
+    /* Locked item hover background */
+    --locked-hover-bg: #ff9999;
+}
+
+body.theme-winter {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.theme-winter .navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+body.theme-winter .navbar,
+body.theme-winter .navbar .navbar-brand,
+body.theme-winter .navbar .btn,
+body.theme-winter .navbar .nav-link,
+body.theme-winter .navbar .dropbtn,
+body.theme-winter .navbar .points {
+    color: var(--navbar-link-color) !important;
+}
+
+body.theme-winter .card {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.theme-winter .alert {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+body.theme-winter .btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.theme-winter .btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--border-color-hover);
+}

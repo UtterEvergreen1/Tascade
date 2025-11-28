@@ -1,0 +1,90 @@
+/* Fall Theme */
+body.theme-fall {
+    /* Colors */
+    --bg-color: #fff3e6;
+    --text-color: #3b2f2f;
+    --text-muted: #666666;
+    --heading-color: #42291a;
+    --label-color: #5a3e2b;
+
+    /* Navbar */
+    --navbar-bg: #d97706;
+    --navbar-hover-bg: #b45309;
+    --navbar-link-color: #ffffff;
+
+    /* Cards and columns */
+    --column-bg: #fdebd0;
+    --card-bg: #fef1e0;
+    --task-bg: #fff3e6;
+    --task-bg-hover: #ffd699;
+    --drop-over-bg: #ffe0b2;
+    /* Borders */
+    --border-color: #e6b89c;
+    --border-color-hover: #d9886f;
+
+    /* Buttons */
+    --btn-bg: #f7d6ad;
+    --btn-bg-hover: #f0b678;
+    --btn-primary-bg: #e07b39;
+    --btn-primary-hover-bg: #c65d0a;
+    --btn-secondary-hover-bg: #f0c27a;
+
+    /* Dropdowns */
+    --dropdown-bg: #fef1e0;
+    --dropdown-hover-bg: #ffd699;
+
+    /* Shadows */
+    --shadow-1: 0 .125em .25em rgba(0, 0, 0, 0.1);
+    --shadow-2: 0 .5em 1em rgba(0, 0, 0, 0.05);
+    --dropdown-shadow: 0 .5em 1em 0 rgba(0, 0, 0, 0.2);
+
+    /* Focus and error states */
+    --focus-border: #e07b39;
+    --focus-ring: 0 0 0 .15em rgba(224, 123, 57, 0.2);
+    --error-border: #e11d48;
+    --error-ring: 0 0 0 .15em rgba(225, 29, 72, 0.2);
+
+    /* Disabled states */
+    --disabled-bg: #f5f5f5;
+    --disabled-text: #aaa;
+
+    /* Locked item hover background */
+    --locked-hover-bg: #d33e3e;
+}
+
+/* Apply theme variables to page */
+body.theme-fall {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.theme-fall .navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+body.theme-fall .navbar .navbar-brand,
+body.theme-fall .navbar .btn,
+body.theme-fall .navbar .nav-link,
+body.theme-fall .navbar .dropbtn,
+body.theme-fall .navbar .points {
+    color: var(--navbar-link-color) !important;
+}
+
+/* Cards and alerts */
+body.theme-fall .card,
+body.theme-fall .alert {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.theme-fall .btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.theme-fall .btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--border-color-hover);
+}

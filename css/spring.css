@@ -1,0 +1,97 @@
+body.theme-spring {
+    /* Colors */
+    --bg-color: #f0f9f0;
+    --text-color: #2c3e2f;
+    --text-muted: #6b8e5e;
+    --heading-color: #1f3a20;
+    --label-color: #3a5f3a;
+
+    /* Navbar */
+    --navbar-bg: #a8d5a2;
+    --navbar-hover-bg: #8ec77e;
+    --navbar-link-color: #1f3a20;
+
+    /* Cards and columns */
+    --column-bg: #e0f7e0;
+    --card-bg: #f0fff0;
+    --task-bg: #f7fff7;
+    --task-bg-hover: #d0f0d0;
+    --drop-over-bg: #c8ecc8;
+
+    /* Borders */
+    --border-color: #b0d4b0;
+    --border-color-hover: #88b888;
+
+    /* Buttons */
+    --btn-bg: #e0f0e0;
+    --btn-bg-hover: #c8e8c8;
+    --btn-primary-bg: #6cb36c;
+    --btn-primary-hover-bg: #57a057;
+    --btn-secondary-hover-bg: #d0e8d0;
+
+    /* Dropdowns */
+    --dropdown-bg: #f7fdf7;
+    --dropdown-hover-bg: #d0f0d0;
+
+    /* Shadows */
+    --shadow-1: 0 .125em .25em rgba(0, 0, 0, 0.05);
+    --shadow-2: 0 .5em 1em rgba(0, 0, 0, 0.05);
+    --dropdown-shadow: 0 .5em 1em 0 rgba(0, 0, 0, 0.1);
+
+    /* Focus and error states */
+    --focus-border: #4caf50;
+    --focus-ring: 0 0 0 .15em rgba(76, 175, 80, 0.2);
+    --error-border: #e11d48;
+    --error-ring: 0 0 0 .15em rgba(225, 29, 72, 0.2);
+
+    /* Disabled states */
+    --disabled-bg: #e6f2e6;
+    --disabled-text: #8cae8c;
+
+    /* Locked item hover background */
+    --locked-hover-bg: #d33e3e;
+}
+
+/* Apply main background and text */
+body.theme-spring {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Navbar styling */
+body.theme-spring .navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+body.theme-spring .navbar,
+body.theme-spring .navbar .navbar-brand,
+body.theme-spring .navbar .btn,
+body.theme-spring .navbar .nav-link,
+body.theme-spring .navbar .dropbtn,
+body.theme-spring .navbar .points {
+    color: var(--navbar-link-color) !important;
+}
+
+/* Cards */
+body.theme-spring .card {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Alerts */
+body.theme-spring .alert {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+body.theme-spring .btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.theme-spring .btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--border-color-hover);
+}

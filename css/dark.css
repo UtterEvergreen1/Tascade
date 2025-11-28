@@ -81,12 +81,13 @@ body.theme-dark .alert {
     color: var(--text-color) !important;
 }
 
-body.theme-dark .btn {
-    background-color: var(--btn-bg);
+body.theme-dark .btn-primary {
+    background-color: var(--btn-primary-bg);
     color: var(--text-color);
     border-color: var(--border-color);
 }
 
-body.theme-dark .btn:hover {
-    background-color: var(--btn-bg-hover);
+body.theme-dark .btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--border-color-hover);
 }
