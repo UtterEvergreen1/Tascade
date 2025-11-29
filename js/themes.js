@@ -1,4 +1,11 @@
 function switchTheme(theme) {
+    const unlocked = JSON.parse(localStorage.getItem("unlockedThemes")) || ["light"];
+
+    if(!unlocked.includes(theme)) {
+        showLockedMessage();
+        return;
+    }
+
     const links = document.querySelectorAll('link[data-theme]');
     links.forEach(link => link.disabled = link.dataset.theme !== theme);
 
@@ -14,4 +21,28 @@ function loadTheme() {
     switchTheme(theme);
 }
 
-document.addEventListener("DOMContentLoaded", loadTheme);
+function updateThemeDropdown() {
+    const unlocked = JSON.parse(localStorage.getItem("unlockedThemes")) || ["light"];
+    const themeLinks = document.querySelectorAll("#themes a");
+
+    themeLinks.forEach(link => {
+        const onclickAttr = link.getAttribute("onclick");
+        const themeMatch = onclickAttr?.match(/'(\w+)'/);
+        const theme = themeMatch?.[1];
+
+        if (!theme) return;
+
+        if(unlocked.includes(theme)) {
+            link.classList.remove("locked");
+            link.onclick = () => switchTheme(theme);
+        } else {
+            link.classList.add("locked");
+            link.onclick = showLockedMessage;
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadTheme();
+    updateThemeDropdown();
+});

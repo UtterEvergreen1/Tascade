@@ -57,8 +57,8 @@
     --locked-hover-bg: #d33e3e;
 
     /* Neutral colors for icons */
-    --neutral-600: #6b7280; /* icon/chevron */
-    --neutral-700: #374151; /* icon/chevron focus */
+    --neutral-600: #6b7280;
+    --neutral-700: #374151;
 
     /* Radius */
     --radius-1: .25rem;

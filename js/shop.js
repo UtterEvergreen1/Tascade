@@ -1,20 +1,20 @@
-// Points from existing gamification.js
 const shopPointsDisplay = document.getElementById("shopPoints");
 shopPointsDisplay.textContent = points.toString();
 
-// Load unlocked items from localStorage
 let unlocked = JSON.parse(localStorage.getItem("unlockedItems") || "[]");
+let unlockedThemes = JSON.parse(localStorage.getItem("unlockedThemes") || '["light"]');
 
-// Define shop items (easy to expand)
 const shopItems = {
     themes: [
-        { id: "dark-mode", name: "Dark Mode", cost: 20 },
-        { id: "blue-theme", name: "Blue Theme", cost: 30 },
-        { id: "retro-theme", name: "Retro Theme", cost: 50 }
+        { id: "dark", name: "Dark 🌘", cost: 20 },
+        { id: "winter", name: "Winter ❄️", cost: 30 },
+        { id: "spring", name: "Spring 🌱", cost: 30 },
+        { id: "summer", name: "Summer ☀️", cost: 30 },
+        { id: "fall", name: "Fall 🍂", cost: 30 }
     ],
     avatars: [
-        { id: "cool-avatar", name: "Cool Avatar", cost: 10 },
-        { id: "ninja-avatar", name: "Ninja Avatar", cost: 20 }
+        { id: "ex-avatar", name: "ex-avatar", cost: 10 },
+        { id: "ex2-avatar", name: "ex2-avatar", cost: 20 }
     ],
     badges: [
         { id: "task-master-badge", name: "Task Master Badge", cost: 100 },
@@ -22,12 +22,12 @@ const shopItems = {
     ]
 };
 
-// Renders a category (Bootstrap cards)
-function renderCategory(containerId, items) {
+function renderCategory(containerId, items, type) {
     const container = document.getElementById(containerId);
     container.innerHTML = "";
 
     items.forEach(item => {
+        const isUnlocked = type === "theme" ? unlockedThemes.includes(item.id) : unlocked.includes(item.id);
         const col = document.createElement("div");
         col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
 
@@ -36,8 +36,8 @@ function renderCategory(containerId, items) {
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text mb-3">${item.cost} points</p>
-                    <button class="btn btn-primary mt-auto buy-btn" data-id="${item.id}">
-                        ${unlocked.includes(item.id) ? "Unlocked ✔" : "Buy"}
+                    <button class="btn btn-primary mt-auto buy-btn" data-id="${item.id}" data-type="${type}">
+                        ${isUnlocked ? "Unlocked ✔" : "Buy"}
                     </button>
                 </div>
             </div>
@@ -46,17 +46,21 @@ function renderCategory(containerId, items) {
         container.appendChild(col);
     });
 
-    // Add buy button logic
     container.querySelectorAll(".buy-btn").forEach(btn => {
-        btn.onclick = () => handleBuy(btn.dataset.id);
+        btn.onclick = () => handleBuy(btn.dataset.id, btn.dataset.type);
     });
 }
 
-function handleBuy(itemId) {
-    const item = [...shopItems.themes, ...shopItems.avatars].find(i => i.id === itemId);
+function handleBuy(itemId, type) {
+    let item;
+    if(type === "theme") item = shopItems.themes.find(i => i.id === itemId);
+    else if(type === "avatar") item = shopItems.avatars.find(i => i.id === itemId); //Change this if we're not doing avatars and badges anymore
+    else item = shopItems.badges.find(i => i.id === itemId);
+    
     if (!item) return;
 
-    if (unlocked.includes(itemId)) {
+    const alreadyUnlocked = type === "theme" ? unlockedThemes.includes(itemId) : unlocked.includes(itemId);
+    if (alreadyUnlocked) {
         alert("You already own this.");
         return;
     }
@@ -66,18 +70,24 @@ function handleBuy(itemId) {
         savePoints();
         shopPointsDisplay.textContent = points.toString();
 
-        unlocked.push(itemId);
-        localStorage.setItem("unlockedItems", JSON.stringify(unlocked));
-
-        // Refresh UI
-        renderCategory("themeList", shopItems.themes);
-        renderCategory("avatarList", shopItems.avatars);
+        if (type === "theme") {
+            unlockedThemes.push(itemId);
+            localStorage.setItem("unlockedThemes", JSON.stringify(unlockedThemes));
+            if(typeof updateThemeDropdown === "function") updateThemeDropdown();
+        } else {
+            unlocked.push(itemId);
+            localStorage.setItem("unlockedItems", JSON.stringify(unlocked));
+        }
+        
+        renderCategory("themeList", shopItems.themes, "theme");
+        renderCategory("avatarList", shopItems.avatars, "avatar");
+        renderCategory("badgeList", shopItems.badges, "badge");
+        
     } else {
         alert("Not enough points!");
     }
 }
 
-// Initial rendering
-renderCategory("themeList", shopItems.themes);
-renderCategory("avatarList", shopItems.avatars);
-renderCategory("badgeList", shopItems.badges);
+renderCategory("themeList", shopItems.themes, "theme");
+renderCategory("avatarList", shopItems.avatars, "avatar");
+renderCategory("badgeList", shopItems.badges, "badge");
