@@ -208,6 +208,11 @@ main {
     text-decoration: none;
 }
 
+.navbar .navbar-brand,
+.navbar button {
+    color: var(--navbar-link-color);
+}
+
 /* The dropdown container */
 .dropdown {
     margin-right: 0;

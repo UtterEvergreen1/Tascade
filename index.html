@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,50 +12,61 @@
     <link rel="stylesheet" href="css/summer.css" data-theme="summer" disabled>
     <link rel="stylesheet" href="css/fall.css" data-theme="fall" disabled>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js" defer></script>
     <script src="js/themes.js" defer></script>
     <script src="js/tasks.js" defer></script>
     <script src="js/gamification.js" defer></script>
 </head>
+
 <body>
-<header>
-    <div class="navbar">
-        <div class="dropdown h100">
-            <button class="dropbtn h100" onclick="showDropdown('themes')">Themes
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content" id="themes">
-                <a onclick="switchTheme('light')">Light 💡</a>
-                <a onclick="switchTheme('dark')">Dark 🌘</a>
-                <a onclick="switchTheme('winter')">Winter ❄️</a>
-                <a onclick="switchTheme('spring')">Spring 🌱</a>
-                <a onclick="switchTheme('summer')">Summer ☀️</a>
-                <a onclick="switchTheme('fall')">Fall 🍂</a>
+    <header>
+        <div class="navbar">
+            <div class="dropdown h100">
+                <button class="dropbtn h100">Themes
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="themes">
+                    <a onclick="switchTheme('light')">Light 💡</a>
+                    <a onclick="switchTheme('dark')">Dark 🌘</a>
+                    <a onclick="switchTheme('winter')">Winter ❄️</a>
+                    <a onclick="switchTheme('spring')">Spring 🌱</a>
+                    <a onclick="switchTheme('summer')">Summer ☀️</a>
+                    <a onclick="switchTheme('fall')">Fall 🍂</a>
+                </div>
+            </div>
+            <div class="shop-section">
+                <a href="shop.html">Shop <i class="fa fa-shopping-cart"></i></a>
+            </div>
+            <div class="add-task h100">
+                <a href="add-task.html">Add Task <i class="fa fa-plus"></i></a>
+            </div>
+            <div class="points h100">
+                Points: <span id="points">0</span>
             </div>
         </div>
-        <div class="shop-section">
-            <a href="shop.html">Shop <i class="fa fa-shopping-cart"></i></a>
+    </header>
+    <main class="flex-fill">
+        <div class="board">
+            <div class="column" id="todo">
+                <h2>Todo</h2>
+            </div>
+            <div class="column" id="inprogress">
+                <h2>In Progress</h2>
+            </div>
+            <div class="column" id="done">
+                <h2>Done</h2>
+            </div>
         </div>
-        <div class="add-task h100">
-            <a href="add-task.html">Add Task <i class="fa fa-plus"></i></a>
-        </div>
-        <div class="points h100">
-             Points: <span id="points">0</span>
-        </div>
-    </div>
-</header>
-<main>
-    <div class="board">
-        <div class="column" id="todo">
-            <h2>Todo</h2>
-        </div>
-        <div class="column" id="inprogress">
-            <h2>In Progress</h2>
-        </div>
-        <div class="column" id="done">
-            <h2>Done</h2>
-        </div>
-    </div>
-</main>
+    </main>
+    <div id="footer"></div>
+    <script>
+        $(function () {
+            $("#footer").load("footer.html");
+        });
+    </script>
+
+
 </body>
+
 </html>
