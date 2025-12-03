@@ -4,20 +4,13 @@ function showLockedMessage() {
 
 // jQuery for dropdown animation
 $(document).ready(function () {
-    $(".dropdown-content").hide();
-    $(".dropdown-btn").click(function () {
-        let $themes = $("#themes");
-        $themes.finish();
-        $themes.slideToggle(300);
+    $(".dropdown-btn").on("click", function (event) {
+        event.stopPropagation();
+        const menu = $(this).next(".dropdown-content");
+        $(".dropdown-content").not(menu).stop(true, true).slideUp(180);
+        menu.stop(true, true).slideToggle(180);
     });
-
-    $(document).click(function (event) {
-        if (!$(event.target).closest('.my-dropdown').length) {
-            let $themes = $("#themes");
-            if ($themes.is(":visible")) {
-                $themes.finish();
-                $themes.slideUp(300);
-            }
-        }
+    $(document).on("click", function () {
+        $(".dropdown-content").stop(true, true).slideUp(180);
     });
 });

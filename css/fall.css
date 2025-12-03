@@ -65,7 +65,7 @@ body.theme-fall .my-navbar {
 body.theme-fall .my-navbar .navbar-brand,
 body.theme-fall .my-navbar .btn,
 body.theme-fall .my-navbar .nav-link,
-body.theme-fall .my-navbar .themes-dropdown,
+body.theme-fall .my-navbar .dropdown-btn,
 body.theme-fall .my-navbar .points-container {
     color: var(--navbar-link-color) !important;
 }

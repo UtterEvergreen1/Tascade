@@ -65,7 +65,7 @@ body.theme-dark .my-navbar,
 body.theme-dark .my-navbar .navbar-brand,
 body.theme-dark .my-navbar .btn,
 body.theme-dark .my-navbar .nav-link,
-body.theme-dark .my-navbar .themes-dropdown,
+body.theme-dark .my-navbar .dropdown-btn,
 body.theme-dark .my-navbar .points-container {
     color: var(--navbar-link-color) !important;
 }

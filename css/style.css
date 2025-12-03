@@ -180,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Make only top-level nav items fill the navbar height */
 .my-navbar a,
 .my-navbar .add-task,
-.my-navbar .themes-dropdown,
+.my-navbar .dropdown-btn,
 .my-navbar .home,
 .points-container,
 .shop-section {
@@ -253,7 +253,7 @@ a {
 .my-navbar a:focus,
 .my-navbar button:focus,
 .my-navbar a:hover,
-.my-dropdown:hover .themes-dropdown {
+.my-dropdown:hover .dropdown-btn {
     background-color: var(--navbar-hover-bg);
 }
 
