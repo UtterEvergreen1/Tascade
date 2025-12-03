@@ -3,6 +3,12 @@ shopPointsDisplay.textContent = points.toString();
 
 let unlocked = JSON.parse(localStorage.getItem("unlockedItems") || "[]");
 let unlockedThemes = JSON.parse(localStorage.getItem("unlockedThemes") || '["light"]');
+let unlockedFonts = JSON.parse(localStorage.getItem("unlockedFonts") || "[]");
+
+if (!unlockedFonts.includes("segoeUI")) {
+    unlockedFonts.push("segoeUI");
+    localStorage.setItem("unlockedFonts", JSON.stringify(unlockedFonts));
+}
 
 const shopItems = {
     themes: [
@@ -11,6 +17,13 @@ const shopItems = {
         { id: "spring", name: "Spring 🌱", cost: 30 },
         { id: "summer", name: "Summer ☀️", cost: 30 },
         { id: "fall", name: "Fall 🍂", cost: 30 }
+    ],
+    fonts: [
+        { id: "comic", name: "Comic Sans", cost: 10 },
+        { id: "courier", name: "Courier New", cost: 10 },
+        { id: "bangers", name: "Bangers", cost: 10 },
+        { id: "robotoSlab", name: "Roboto Slab", cost: 10 },
+        { id: "pressStart", name: "Press Start 2P", cost: 20 }
     ],
     avatars: [
         { id: "ex-avatar", name: "ex-avatar", cost: 10 },
@@ -27,7 +40,11 @@ function renderCategory(containerId, items, type) {
     container.innerHTML = "";
 
     items.forEach(item => {
-        const isUnlocked = type === "theme" ? unlockedThemes.includes(item.id) : unlocked.includes(item.id);
+        let isUnlocked;
+        if (type === "theme") isUnlocked = unlockedThemes.includes(item.id);
+        else if (type === "font") isUnlocked = unlockedFonts.includes(item.id);
+        else isUnlocked = unlocked.includes(item.id);
+
         const col = document.createElement("div");
         col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
 
@@ -36,7 +53,7 @@ function renderCategory(containerId, items, type) {
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text mb-3">${item.cost} points</p>
-                    <button class="btn btn-primary mt-auto buy-btn" data-id="${item.id}" data-type="${type}">
+                    <button class="btn ${isUnlocked ? 'btn-success' : 'btn-primary'} mt-auto buy-btn" data-id="${item.id}" data-type="${type}">
                         ${isUnlocked ? "Unlocked ✔" : "Buy"}
                     </button>
                 </div>
@@ -53,14 +70,20 @@ function renderCategory(containerId, items, type) {
 
 function handleBuy(itemId, type) {
     let item;
-    if(type === "theme") item = shopItems.themes.find(i => i.id === itemId);
-    else if(type === "avatar") item = shopItems.avatars.find(i => i.id === itemId); //Change this if we're not doing avatars and badges anymore
-    else item = shopItems.badges.find(i => i.id === itemId);
-    
+
+    if (type === "theme") item = shopItems.themes.find(i => i.id === itemId);
+    else if (type === "avatar") item = shopItems.avatars.find(i => i.id === itemId);
+    else if (type === "badge") item = shopItems.badges.find(i => i.id === itemId);
+    else if (type === "font") item = shopItems.fonts.find(i => i.id === itemId);
+
     if (!item) return;
 
-    const alreadyUnlocked = type === "theme" ? unlockedThemes.includes(itemId) : unlocked.includes(itemId);
-    if (alreadyUnlocked) {
+    const isUnlocked =
+        type === "theme" ? unlockedThemes.includes(item.id) :
+            type === "font" ? unlockedFonts.includes(item.id) :
+                unlocked.includes(item.id);
+
+    if (isUnlocked) {
         alert("You already own this.");
         return;
     }
@@ -73,21 +96,32 @@ function handleBuy(itemId, type) {
         if (type === "theme") {
             unlockedThemes.push(itemId);
             localStorage.setItem("unlockedThemes", JSON.stringify(unlockedThemes));
-            if(typeof updateThemeDropdown === "function") updateThemeDropdown();
-        } else {
+            if (typeof updateThemeDropdown === "function") updateThemeDropdown();
+        }
+        else if (type === "font") {
+            unlockedFonts.push(itemId);
+            localStorage.setItem("unlockedFonts", JSON.stringify(unlockedFonts));
+            if (typeof updateFontDropdown === "function") updateFontDropdown();
+        }
+        else {
             unlocked.push(itemId);
             localStorage.setItem("unlockedItems", JSON.stringify(unlocked));
         }
-        
+
+        // Re-render all categories
         renderCategory("themeList", shopItems.themes, "theme");
+        renderCategory("fontList", shopItems.fonts, "font");
         renderCategory("avatarList", shopItems.avatars, "avatar");
         renderCategory("badgeList", shopItems.badges, "badge");
-        
+
     } else {
         alert("Not enough points!");
     }
 }
 
-renderCategory("themeList", shopItems.themes, "theme");
-renderCategory("avatarList", shopItems.avatars, "avatar");
-renderCategory("badgeList", shopItems.badges, "badge");
+document.addEventListener("DOMContentLoaded", () => {
+    renderCategory("themeList", shopItems.themes, "theme");
+    renderCategory("fontList", shopItems.fonts, "font");
+    renderCategory("avatarList", shopItems.avatars, "avatar");
+    renderCategory("badgeList", shopItems.badges, "badge");
+});

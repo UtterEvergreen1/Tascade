@@ -20,15 +20,15 @@ window.onclick = e => {
 
 // jQuery for dropdown animation
 $(document).ready(function () {
-    $(".dropbtn").click(function () {
-        $("#themes").slideToggle(300);
+
+    $(".dropbtn").on("click", function (event) {
+        event.stopPropagation();
+        const menu = $(this).next(".dropdown-content");
+        $(".dropdown-content").not(menu).stop(true, true).slideUp(180);
+        menu.stop(true, true).slideToggle(180);
+    });
+    $(document).on("click", function () {
+        $(".dropdown-content").stop(true, true).slideUp(180);
     });
 
-    $(document).click(function (event) {
-        if (!$(event.target).closest('.dropdown').length) {
-            if ($("#themes").is(":visible")) {
-                $("#themes").slideUp(300);
-            }
-        }
-    });
 });

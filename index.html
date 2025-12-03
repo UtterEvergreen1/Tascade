@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="css/summer.css" data-theme="summer" disabled>
     <link rel="stylesheet" href="css/fall.css" data-theme="fall" disabled>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js" defer></script>
     <script src="js/themes.js" defer></script>
@@ -23,8 +26,8 @@
     <header>
         <div class="navbar">
             <div class="dropdown h100">
-                <button class="dropbtn h100">Themes
-                    <i class="fa fa-caret-down"></i>
+                <button class="dropbtn h100 dropdown-toggle" data-target="themes">
+                    Themes <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content" id="themes">
                     <a onclick="switchTheme('light')">Light 💡</a>
@@ -35,18 +38,31 @@
                     <a onclick="switchTheme('fall')">Fall 🍂</a>
                 </div>
             </div>
-            <div class="shop-section">
-                <a href="shop.html">Shop <i class="fa fa-shopping-cart"></i></a>
+            <div class="dropdown h100">
+                <button class="dropbtn h100 dropdown-toggle" data-target="fontsDropdown">
+                    Fonts <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="fontsDropdown">
+                    <a onclick="switchFont('segoeUI')">Segoe UI (Default)</a>
+                    <a onclick="switchFont('comic')">Comic Sans</a>
+                    <a onclick="switchFont('courier')">Courier New</a>
+                    <a onclick="switchFont('bangers')">Bangers</a>
+                    <a onclick="switchFont('robotoSlab')">Roboto Slab</a>
+                    <a onclick="switchFont('pressStart')">Press Start 2P</a>
+                </div>
             </div>
             <div class="add-task h100">
                 <a href="add-task.html">Add Task <i class="fa fa-plus"></i></a>
+            </div>
+            <div class="shop-section">
+                <a href="shop.html">Shop <i class="fa fa-shopping-cart"></i></a>
             </div>
             <div class="points h100">
                 Points: <span id="points">0</span>
             </div>
         </div>
     </header>
-    <main class="flex-fill">
+    <main>
         <div class="board">
             <div class="column" id="todo">
                 <h2>Todo</h2>
@@ -59,13 +75,6 @@
             </div>
         </div>
     </main>
-    <div id="footer"></div>
-    <script>
-        $(function () {
-            $("#footer").load("footer.html");
-        });
-    </script>
-
 
 </body>
 
