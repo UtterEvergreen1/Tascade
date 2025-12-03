@@ -18,3 +18,18 @@ window.onclick = e => {
         });
     }
 }
+
+// jQuery for dropdown animation
+$(document).ready(function () {
+    $(".dropbtn").click(function () {
+        $("#themes").slideToggle(300);
+    });
+
+    $(document).click(function (event) {
+        if (!$(event.target).closest('.dropdown').length) {
+            if ($("#themes").is(":visible")) {
+                $("#themes").slideUp(300);
+            }
+        }
+    });
+});
