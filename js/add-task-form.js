@@ -5,7 +5,7 @@ const columnValueInput = document.getElementById("taskColumn");
 form.addEventListener("submit", e => {
     e.preventDefault();
 
-    const name = taskName.value.trim();
+    const name = taskNameInput.value.trim();
     if (!name) {
         taskNameInput.classList.add("input-error");
         taskNameInput.setAttribute("aria-invalid", "true");

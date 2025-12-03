@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task • Tascade</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/dark.css" data-theme="dark" disabled>
@@ -17,54 +18,61 @@
     <script src="js/themes.js" defer></script>
 </head>
 
-<body class="page theme-light">
-    <header>
-        <nav class="navbar">
-            <a href="index.html" aria-label="Back to Board" class="home-btn h100"><i class="fa fa-home"></i>Home</a>
-            <div class="navbar-title">Add Task</div>
-        </nav>
-    </header>
-    <main>
-        <section class="form-wrapper">
-            <div class="form-card">
-                <h1>Add a New Task</h1>
-                <form id="addTaskForm" novalidate>
-                    <div class="form-field">
-                        <label for="taskName">Task Name</label>
-                        <input type="text" id="taskName" placeholder="e.g. Do homework" list="suggestedTasks" required>
-                        <datalist id="suggestedTasks">
-                            <option value="Do homework">
-                            <option value="Study">
-                            <option value="Clean your room">
-                            <option value="Exercise">
-                            <option value="Read a book">
-                            <option value="Buy groceries">
-                            <option value="Pay bills">
-                            <option value="Do laundry">
-                            <option value="Complete project">
-                        </datalist>
-                    </div>
+<body class="d-flex flex-grow-1 flex-column h-100">
+<header>
+    <div class="my-navbar">
+        <div class="home">
+            <a href="index.html" aria-label="Back to Board" class="home-btn">
+                <i class="fa fa-home"></i>
+                <span>Home</span>
+            </a>
+        </div>
 
-                    <div class="form-field">
-                        <label for="taskColumn">Column</label>
-                        <div class="select-wrap">
-                            <select id="taskColumn">
-                                <option value="todo">Todo</option>
-                                <option value="inprogress">In Progress</option>
-                                <option value="done">Done</option>
-                            </select>
-                        </div>
-                    </div>
+        <div class="navbar-title">
+            <span>Add Task</span>
+        </div>
+    </div>
+</header>
+<main class="d-flex flex-grow-1 flex-column justify-content-center">
+    <section class="form-wrapper">
+        <div class="form-card">
+            <h1>Add a New Task</h1>
+            <form id="addTaskForm" novalidate>
+                <div class="form-field">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" id="taskName" placeholder="e.g. Do homework" list="suggestedTasks" required>
+                    <datalist id="suggestedTasks">
+                        <option value="Do homework">
+                        <option value="Study">
+                        <option value="Clean your room">
+                        <option value="Exercise">
+                        <option value="Read a book">
+                        <option value="Buy groceries">
+                        <option value="Pay bills">
+                        <option value="Do laundry">
+                        <option value="Complete project">
+                    </datalist>
+                </div>
 
-                    <div class="actions">
-                        <button class="btn btn-primary" type="submit">Save Task</button>
-                        <a class="btn btn-secondary" href="index.html" role="button">Cancel</a>
+                <div class="form-field">
+                    <label for="taskColumn">Column</label>
+                    <div class="select-wrap">
+                        <select id="taskColumn">
+                            <option value="todo">Todo</option>
+                            <option value="inprogress">In Progress</option>
+                            <option value="done">Done</option>
+                        </select>
                     </div>
-                </form>
-                <p class="helper">Tasks are saved locally in your browser.</p>
-            </div>
-        </section>
-    </main>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-1" type="submit">Save Task</button>
+                    <a class="btn btn-cancel" href="index.html" role="button">Cancel</a>
+                </div>
+            </form>
+            <p class="helper">Tasks are saved locally in your browser.</p>
+        </div>
+    </section>
+</main>
 </body>
-
 </html>

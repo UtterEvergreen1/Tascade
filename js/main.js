@@ -9,7 +9,8 @@ function showLockedMessage() {
 }
 
 window.onclick = e => {
-    if (!e.target.matches('.dropbtn')) {
+    if (!e.target.matches('.themes-dropdown')) {
+        e.stopPropagation();
         dropDowns.forEach(dropdown => {
             if (dropdown.classList.contains('show')) {
                 dropdown.classList.remove('show');

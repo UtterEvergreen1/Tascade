@@ -7,8 +7,11 @@ function addColumnDragEvents(column) {
         e.preventDefault();
         column.classList.add('drag-over');
     });
-    column.addEventListener('dragleave', () => {
-        column.classList.remove('drag-over');
+    column.addEventListener('dragleave', e => {
+        // Only remove the class if we're leaving the column entirely
+        if (!column.contains(e.relatedTarget)) {
+            column.classList.remove('drag-over');
+        }
     });
     column.addEventListener('drop', () => {
         column.classList.remove('drag-over');
@@ -33,7 +36,9 @@ function addColumnDragEvents(column) {
             }
         }
     });
-
+    column.addEventListener('dragend', () => {
+        column.classList.remove('drag-over');
+    });
 
 }
 
@@ -79,11 +84,9 @@ function addDragEvents(task) {
 
     task.addEventListener('dragstart', () => {
         draggedTask = task;
-        setTimeout(() => task.style.display = "none", 0);
     });
 
     task.addEventListener('dragend', () => {
-        draggedTask.style.display = "flex";
         draggedTask = null;
     });
 }
