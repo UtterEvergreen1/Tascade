@@ -105,14 +105,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Fixed header/navbar */
-header {
+.fixed-header {
     position: fixed;
     width: 100%;
     z-index: 2;
 }
 
 /* Main content padding to avoid overlap with fixed navbar */
-main {
+.fixed-header + main {
     padding-top: var(--navbar-height);
 }
 
@@ -127,8 +127,7 @@ main {
 
 /* Column Styles*/
 .column {
-    flex: 1 1 300px;
-    max-width: 30%;
+    flex: 1 1;
     min-width: 250px; 
     background: var(--column-bg);
     border-radius: var(--radius-2);
@@ -165,57 +164,51 @@ main {
 }
 
 /* Navbar container */
-.navbar {
+.my-navbar {
     display: flex;
     align-items: center;
     overflow: hidden;
     height: var(--navbar-height);
     background-color: var(--navbar-bg);
-    padding: 0 var(--spacing-md);
-    justify-content: flex-start;
 }
 
 /* Make only top-level nav items fill the navbar height */
-.navbar > a,
-.navbar .add-task > a,
-.navbar .dropbtn {
+.my-navbar a,
+.my-navbar .add-task,
+.my-navbar .themes-dropdown,
+.my-navbar .shop-section,
+.my-navbar .points,
+.my-navbar .home {
+    height: 100%;
     display: flex;
     align-items: center;
-    height: 100%;
     box-sizing: border-box;
-    padding: 0 var(--nav-link-pad-x) !important; /* horizontal only to avoid overflow */
+    color: var(--navbar-link-color);
     column-gap: var(--spacing-1); /* space between label and icon */
 }
 
-/* Full height */
-.h100 {
-    height: 100%;
+/* Navbar title styling */
+.navbar-title {
+    color: var(--navbar-link-color);
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+    letter-spacing: 1px;
+    margin: 0 auto; /* Center the title */
+}
+
+/* Set the home button position without changing navbar layout */
+.home-btn {
+    height: var(--navbar-height) !important;
+    position: absolute;
 }
 
 /* Points display */
 .points {
-    display: flex;
-    align-items: center;
     column-gap: var(--spacing-1);
 }
 
-/* Links inside the navbar */
-.navbar a {
-    font-size: var(--font-size-base);
-    color: var(--navbar-link-color);
-    text-align: center;
-    padding: var(--nav-link-pad-y) var(--nav-link-pad-x);
-    text-decoration: none;
-}
-
-.navbar .navbar-brand,
-.navbar button {
-    color: var(--navbar-link-color);
-}
-
 /* The dropdown container */
-.dropdown {
-    margin-right: 0;
+.my-dropdown {
     overflow: hidden;
 }
 
@@ -224,26 +217,31 @@ button, .points {
     font-size: var(--font-size-base);
     border: none;
     outline: none;
-    color: white;
+    color: var(--navbar-link-color);
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
+    padding: 0 var(--nav-link-pad-x);
 }
 
 /* Buttons have pointer cursor */
 button {
     cursor: pointer;
-    padding: var(--nav-link-pad-y) var(--nav-link-pad-x);
 }
 
 /* Links have pointer cursor */
 a {
     cursor: pointer;
     outline: none;
+    font-size: var(--font-size-base);
+    color: var(--navbar-link-color);
+    text-align: center;
+    padding: 0 var(--nav-link-pad-x);
+    text-decoration: none;
 }
 
 /* background color for navbar links on hover and focus */
-.navbar a:focus, .navbar button:focus, .navbar a:hover, .dropdown:hover .dropbtn {
+.my-navbar a:focus, .my-navbar button:focus, .my-navbar a:hover, .my-dropdown:hover .themes-dropdown {
     background-color: var(--navbar-hover-bg);
 }
 
@@ -251,7 +249,6 @@ a {
 .points {
     margin-left: var(--spacing-2);
     font-size: var(--font-size-lg);
-    padding: 0 var(--points-pad-x);
     font-weight: 600;
 }
 
@@ -298,11 +295,6 @@ a:hover.locked {
 /* Show the dropdown menu on click */
 .show {
     display: block;
-}
-
-/* Add Task page styles */
-.page {
-    background: var(--bg-color);
 }
 
 .container.points-container {

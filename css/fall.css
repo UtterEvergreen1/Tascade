@@ -58,15 +58,15 @@ body.theme-fall {
     color: var(--text-color);
 }
 
-body.theme-fall .navbar {
+body.theme-fall .my-navbar {
     background-color: var(--navbar-bg) !important;
 }
 
-body.theme-fall .navbar .navbar-brand,
-body.theme-fall .navbar .btn,
-body.theme-fall .navbar .nav-link,
-body.theme-fall .navbar .dropbtn,
-body.theme-fall .navbar .points {
+body.theme-fall .my-navbar .navbar-brand,
+body.theme-fall .my-navbar .btn,
+body.theme-fall .my-navbar .nav-link,
+body.theme-fall .my-navbar .themes-dropdown,
+body.theme-fall .my-navbar .points {
     color: var(--navbar-link-color) !important;
 }
 

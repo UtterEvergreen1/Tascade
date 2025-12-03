@@ -59,16 +59,16 @@ body.theme-spring {
 }
 
 /* Navbar styling */
-body.theme-spring .navbar {
+body.theme-spring .my-navbar {
     background-color: var(--navbar-bg) !important;
 }
 
-body.theme-spring .navbar,
-body.theme-spring .navbar .navbar-brand,
-body.theme-spring .navbar .btn,
-body.theme-spring .navbar .nav-link,
-body.theme-spring .navbar .dropbtn,
-body.theme-spring .navbar .points {
+body.theme-spring .my-navbar,
+body.theme-spring .my-navbar .navbar-brand,
+body.theme-spring .my-navbar .btn,
+body.theme-spring .my-navbar .nav-link,
+body.theme-spring .my-navbar .themes-dropdown,
+body.theme-spring .my-navbar .points {
     color: var(--navbar-link-color) !important;
 }
 
