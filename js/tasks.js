@@ -1,6 +1,8 @@
 const tasks = document.querySelectorAll('.task');
 const columns = document.querySelectorAll('.column');
 let draggedTask = null;
+let touchStartY = 0;
+let touchStartX = 0;
 
 function addColumnDragEvents(column) {
     column.addEventListener('dragover', e => {
@@ -14,27 +16,7 @@ function addColumnDragEvents(column) {
         }
     });
     column.addEventListener('drop', () => {
-        column.classList.remove('drag-over');
-        if (draggedTask) {
-            const oldColumn = draggedTask.parentElement;
-
-            column.appendChild(draggedTask);
-            updateLocalStorage();
-
-            if (column.id === "done" && oldColumn.id !== "done") {
-                points += 10;
-                updatePointsDisplay();
-                savePoints();
-            }
-
-           
-            if (oldColumn.id === "done" && column.id !== "done") {
-                points -= 10;
-                if (points < 0) points = 0;
-                updatePointsDisplay();
-                savePoints();
-            }
-        }
+        handleDrop(column);
     });
     column.addEventListener('dragend', () => {
         column.classList.remove('drag-over');
@@ -63,7 +45,7 @@ function addTaskToBoard(text, columnId) {
 
     // create delete button
     const deleteButton = document.createElement('i');
-    deleteButton.className = 'fa fa-trash delete-btn';
+    deleteButton.className = 'fa fa-trash delete-btn ms-auto';
     deleteButton.onclick = () => deleteTask(task);
 
     // append text and delete button to task
@@ -75,9 +57,32 @@ function addTaskToBoard(text, columnId) {
 
     // add drag events
     addDragEvents(task);
+    addTouchEvents(task);
 }
 
+function handleDrop(column) {
+    column.classList.remove('drag-over');
+    if (draggedTask) {
+        const oldColumn = draggedTask.parentElement;
 
+        column.appendChild(draggedTask);
+        updateLocalStorage();
+
+        if (column.id === "done" && oldColumn.id !== "done") {
+            points += 10;
+            updatePointsDisplay();
+            savePoints();
+        }
+
+
+        if (oldColumn.id === "done" && column.id !== "done") {
+            points -= 10;
+            if (points < 0) points = 0;
+            updatePointsDisplay();
+            savePoints();
+        }
+    }
+}
 
 function addDragEvents(task) {
     task.setAttribute('draggable', 'true');
@@ -91,7 +96,44 @@ function addDragEvents(task) {
     });
 }
 
+function addTouchEvents(task) {
+    task.addEventListener('touchstart', e => {
+        draggedTask = task;
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        task.classList.add('dragging');
+    });
 
+    task.addEventListener('touchmove', e => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+
+        // Remove previous drag-over classes
+        Array.from(columns).forEach(col => col.classList.remove('drag-over'));
+
+        // Find the column below the touch point
+        const columnBelow = elementBelow?.closest('.column');
+        if (columnBelow) {
+            columnBelow.classList.add('drag-over');
+        }
+    });
+
+    task.addEventListener('touchend', e => {
+        const touch = e.changedTouches[0];
+        const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+        const columnBelow = elementBelow?.closest('.column');
+
+        if (columnBelow) {
+            handleDrop(columnBelow);
+        }
+
+        task.classList.remove('dragging');
+        Array.from(columns).forEach(col => col.classList.remove('drag-over'));
+        draggedTask = null;
+    });
+}
 
 function updateLocalStorage() {
     const tasks = [];

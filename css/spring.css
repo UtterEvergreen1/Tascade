@@ -68,7 +68,7 @@ body.theme-spring .my-navbar .navbar-brand,
 body.theme-spring .my-navbar .btn,
 body.theme-spring .my-navbar .nav-link,
 body.theme-spring .my-navbar .themes-dropdown,
-body.theme-spring .my-navbar .points {
+body.theme-spring .my-navbar .points-container {
     color: var(--navbar-link-color) !important;
 }
 

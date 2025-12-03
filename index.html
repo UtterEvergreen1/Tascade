@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tascade</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dark.css" data-theme="dark" disabled>
     <link rel="stylesheet" href="css/winter.css" data-theme="winter" disabled>
@@ -23,12 +24,12 @@
     <script src="js/gamification.js" defer></script>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100 user-select-none">
     <header>
-        <div class="navbar">
-            <div class="dropdown h100">
-                <button class="dropbtn h100 dropdown-toggle" data-target="themes">
-                    Themes <i class="fa fa-caret-down"></i>
+        <div class="my-navbar">
+            <div class="my-dropdown h-100">
+                <button class="themes-dropdown">Themes
+                    <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content" id="themes">
                     <a onclick="switchTheme('light')">Light 💡</a>
@@ -55,16 +56,34 @@
             <div class="add-task h100">
                 <a href="add-task.html">Add Task <i class="fa fa-plus"></i></a>
             </div>
-            <div class="shop-section">
-                <a href="shop.html">Shop <i class="fa fa-shopping-cart"></i></a>
-            </div>
-            <div class="points h100">
-                Points: <span id="points">0</span>
-            </div>
+            <section class="d-none d-sm-flex h-100">
+                <div class="shop-section">
+                    <a href="shop.html">
+                        <span>Shop</span>
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
+                </div>
+                <div class="points-container">
+                    <span>Points:</span>
+                    <span class="points-display">0</span>
+                </div>
+            </section>
         </div>
     </header>
-    <main>
-        <div class="board">
+    <main class="d-flex flex-grow-1 flex-column">
+        <section class="second-header d-sm-none">
+            <div class="points-container">
+                <span>Points:</span>
+                <span class="points-display">0</span>
+            </div>
+            <div class="shop-section">
+                <a href="shop.html">
+                    <span>Shop</span>
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+            </div>
+        </section>
+        <div class="board h-100">
             <div class="column" id="todo">
                 <h2>Todo</h2>
             </div>
@@ -76,6 +95,6 @@
             </div>
         </div>
     </main>
-
 </body>
+
 </html>

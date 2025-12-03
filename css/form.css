@@ -125,6 +125,7 @@ input:focus, select:focus {
     color: var(--text-muted);
     font-size: var(--font-size-sm);
     justify-self: center;
+    text-align: center;
 }
 
 /* Remove default appearance for select elements */
