@@ -66,7 +66,7 @@ body.theme-winter .my-navbar .navbar-brand,
 body.theme-winter .my-navbar .btn,
 body.theme-winter .my-navbar .nav-link,
 body.theme-winter .my-navbar .themes-dropdown,
-body.theme-winter .my-navbar .points {
+body.theme-winter .my-navbar .points-container {
     color: var(--navbar-link-color) !important;
 }
 

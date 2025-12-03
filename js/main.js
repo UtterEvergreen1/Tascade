@@ -1,34 +1,22 @@
-const dropDowns = document.querySelectorAll('.dropdown-content');
-
-function showDropdown(id) {
-    document.getElementById(id).classList.toggle("show");
-}
-
 function showLockedMessage() {
     alert("This feature is locked. Complete more tasks to unlock it!");
 }
 
-window.onclick = e => {
-    if (!e.target.matches('.themes-dropdown')) {
-        e.stopPropagation();
-        dropDowns.forEach(dropdown => {
-            if (dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
-            }
-        });
-    }
-}
-
 // jQuery for dropdown animation
 $(document).ready(function () {
-    $(".dropbtn").click(function () {
-        $("#themes").slideToggle(300);
+    $(".dropdown-content").hide();
+    $(".themes-dropdown").click(function () {
+        let $themes = $("#themes");
+        $themes.finish();
+        $themes.slideToggle(300);
     });
 
     $(document).click(function (event) {
-        if (!$(event.target).closest('.dropdown').length) {
-            if ($("#themes").is(":visible")) {
-                $("#themes").slideUp(300);
+        if (!$(event.target).closest('.my-dropdown').length) {
+            let $themes = $("#themes");
+            if ($themes.is(":visible")) {
+                $themes.finish();
+                $themes.slideUp(300);
             }
         }
     });

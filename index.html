@@ -19,11 +19,11 @@
     <script src="js/tasks.js" defer></script>
     <script src="js/gamification.js" defer></script>
 </head>
-<body class="h-100">
+<body class="d-flex flex-column h-100 user-select-none">
 <header>
     <div class="my-navbar">
         <div class="my-dropdown h-100">
-            <button class="themes-dropdown" onclick="showDropdown('themes')">Themes
+            <button class="themes-dropdown">Themes
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content" id="themes">
@@ -38,15 +38,33 @@
         <div class="add-task">
             <a href="add-task.html"><span>Add Task</span> <i class="fa fa-plus"></i></a>
         </div>
-        <div class="shop-section">
-            <a href="shop.html"><span>Shop</span> <i class="fa fa-shopping-cart"></i></a>
-        </div>
-        <div class="points">
-             Points: <span id="points">0</span>
-        </div>
+        <section class="d-none d-sm-flex h-100">
+            <div class="shop-section">
+                <a href="shop.html">
+                    <span>Shop</span>
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+            </div>
+            <div class="points-container">
+                <span>Points:</span>
+                <span class="points-display">0</span>
+            </div>
+        </section>
     </div>
 </header>
-<main class="h-100">
+<main class="d-flex flex-grow-1 flex-column">
+    <section class="second-header d-sm-none">
+        <div class="points-container">
+            <span>Points:</span>
+            <span class="points-display">0</span>
+        </div>
+        <div class="shop-section">
+            <a href="shop.html">
+                <span>Shop</span>
+                <i class="fa fa-shopping-cart"></i>
+            </a>
+        </div>
+    </section>
     <div class="board h-100">
         <div class="column" id="todo">
             <h2>Todo</h2>

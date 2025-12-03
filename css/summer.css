@@ -67,7 +67,7 @@ body.theme-summer .my-navbar .navbar-brand,
 body.theme-summer .my-navbar .btn,
 body.theme-summer .my-navbar .nav-link,
 body.theme-summer .my-navbar .themes-dropdown,
-body.theme-summer .my-navbar .points {
+body.theme-summer .my-navbar .points-container {
     color: var(--navbar-link-color) !important;
 }
 
