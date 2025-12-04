@@ -10,6 +10,8 @@ $(document).ready(function () {
         $(".dropdown-content").not(menu).stop(true, true).slideUp(180);
         menu.stop(true, true).slideToggle(180);
     });
+
+    // Close dropdowns when clicking outside
     $(document).on("click", function () {
         $(".dropdown-content").stop(true, true).slideUp(180);
     });

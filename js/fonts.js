@@ -1,11 +1,13 @@
 function switchFont(font) {
+    // Load unlocked fonts from local storage
     const unlockedFonts = JSON.parse(localStorage.getItem("unlockedFonts")) || [];
 
     if (!unlockedFonts.includes(font)) {
         alert("Font locked! Buy it in the shop.");
         return;
     }
-    // Different font choices
+    
+    // Map font ID to its actual CSS font-family value
     let fontFamily;
     switch (font) {
         case "segoeUI":
@@ -30,8 +32,10 @@ function switchFont(font) {
             fontFamily = "inherit";
     }
 
-
+    // Apply the font to the entire page
     $("body").css("font-family", fontFamily);
+
+    // Save selected font
     localStorage.setItem("font", font);
 }
 
@@ -45,22 +49,25 @@ function updateFontDropdown() {
     const fontLinks = document.querySelectorAll("#fontsDropdown a");
 
     fontLinks.forEach(link => {
+        // Extract and match font name from onclick attribute
         const onclickAttr = link.getAttribute("onclick");
         const match = onclickAttr?.match(/'(\w+)'/);
         const font = match?.[1];
 
         if (!font) return;
 
+        // Update the dropdown based on unlocked fonts
         if (unlocked.includes(font)) {
             link.classList.remove("locked");
             link.onclick = () => switchFont(font);
         } else {
             link.classList.add("locked");
-            link.onclick = () => alert("Font locked! Buy it in the shop.");
+            link.onclick = () => showLockedMessage();
         }
     });
 }
 
+// Initial load of font and update of dropdown
 document.addEventListener("DOMContentLoaded", () => {
     loadFont();
     updateFontDropdown();

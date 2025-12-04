@@ -1,3 +1,4 @@
+// Load points from localStorage or initialize to 0
 let points = parseInt(localStorage.getItem("points")) || 0;
 
 function updatePointsDisplay() {
@@ -17,6 +18,6 @@ function savePoints() {
     localStorage.setItem("points", String(points));
 }
 
-// Initialize display on page load
+// Initialize points to display on page load
 updatePointsDisplay();
 updateShopPoints();

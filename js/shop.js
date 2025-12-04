@@ -1,6 +1,7 @@
 const shopPointsDisplay = document.getElementById("shopPoints");
 shopPointsDisplay.textContent = points.toString();
 
+// Everything available for purchase in the shop
 const shopItems = {
     themes: [
         { id: "dark", name: "Dark 🌘", cost: 20 },
@@ -39,6 +40,7 @@ function renderCategory(containerId, items, type) {
         const col = document.createElement("div");
         col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
 
+        // Create the card HTML for the items and buy/unlocked button
         col.innerHTML = `
             <div class="card shadow-sm h-100">
                 <div class="card-body d-flex flex-column">
@@ -54,6 +56,7 @@ function renderCategory(containerId, items, type) {
         container.appendChild(col);
     });
 
+    // Attach event listeners to buy buttons
     container.querySelectorAll(".buy-btn").forEach(btn => {
         btn.onclick = () => handleBuy(btn.dataset.id, btn.dataset.type);
     });
@@ -62,6 +65,7 @@ function renderCategory(containerId, items, type) {
 function handleBuy(itemId, type) {
     let item;
 
+    // Find the item based on type and id
     if (type === "theme") item = shopItems.themes.find(i => i.id === itemId);
     else if (type === "avatar") item = shopItems.avatars.find(i => i.id === itemId);
     else if (type === "badge") item = shopItems.badges.find(i => i.id === itemId);
@@ -69,6 +73,7 @@ function handleBuy(itemId, type) {
 
     if (!item) return;
 
+    // Check if already unlocked
     const isUnlocked =
         type === "theme" ? unlockedThemes.includes(item.id) :
             type === "font" ? unlockedFonts.includes(item.id) :
@@ -79,11 +84,13 @@ function handleBuy(itemId, type) {
         return;
     }
 
+    // Check if enough points
     if (points >= item.cost) {
         points -= item.cost;
         savePoints();
         shopPointsDisplay.textContent = points.toString();
 
+        // Add to unlocked items
         if (type === "theme") {
             unlockedThemes.push(itemId);
             localStorage.setItem("unlockedThemes", JSON.stringify(unlockedThemes));
@@ -109,7 +116,7 @@ function handleBuy(itemId, type) {
         alert("Not enough points!");
     }
 }
-
+// Initial render of shop categories
 document.addEventListener("DOMContentLoaded", () => {
     renderCategory("themeList", shopItems.themes, "theme");
     renderCategory("fontList", shopItems.fonts, "font");
