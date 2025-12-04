@@ -1,7 +1,5 @@
 let themeUnlockables = null;
 let fontUnlockables = null;
-let avatarUnlockables = null;
-let badgeUnlockables = null;
 let loadingPromise = null;
 
 async function ensureLoaded() {
@@ -21,22 +19,10 @@ async function getFontUnlockables() {
     return fontUnlockables;
 }
 
-async function getAvatarUnlockables() {
-    await ensureLoaded();
-    return avatarUnlockables;
-}
-
-async function getBadgeUnlockables() {
-    await ensureLoaded();
-    return badgeUnlockables;
-}
-
 async function loadUnlockables() {
     const shopItems = await getShopItems();
     themeUnlockables = new ThemeUnlockables(shopItems);
     fontUnlockables = new FontUnlockables(shopItems);
-    avatarUnlockables = new AvatarUnlockables(shopItems);
-    badgeUnlockables = new BadgeUnlockables(shopItems);
 }
 
 async function getUnlockableCategory(category) {
@@ -45,10 +31,6 @@ async function getUnlockableCategory(category) {
             return await getThemeUnlockables();
         case "font":
             return await getFontUnlockables();
-        case "avatar":
-            return await getAvatarUnlockables();
-        case "badge":
-            return await getBadgeUnlockables();
         default:
             return null;
     }
@@ -133,18 +115,6 @@ class ThemeUnlockables extends UnlockablesCategory {
 class FontUnlockables extends UnlockablesCategory {
     constructor(shopItems) {
         super("font", shopItems.fonts, "unlockedFonts", updateFontDropdown);
-    }
-}
-
-class AvatarUnlockables extends UnlockablesCategory {
-    constructor(shopItems) {
-        super("avatar", shopItems.avatars, "unlockedAvatars", null);
-    }
-}
-
-class BadgeUnlockables extends UnlockablesCategory {
-    constructor(shopItems) {
-        super("badge", shopItems.badges, "unlockedBadges", null);
     }
 }
 
