@@ -1,4 +1,4 @@
-function switchTheme(theme) {
+async function switchTheme(theme) {
     const unlocked = JSON.parse(localStorage.getItem("unlockedThemes")) || ["light"];
 
     if (!unlocked.includes(theme)) {
@@ -16,13 +16,28 @@ function switchTheme(theme) {
     localStorage.setItem("theme", theme);
 }
 
-function loadTheme() {
+async function loadTheme() {
     const theme = localStorage.getItem("theme") || "light";
-    switchTheme(theme);
+    await switchTheme(theme);
 }
 
-function updateThemeDropdown() {
-    const unlocked = JSON.parse(localStorage.getItem("unlockedThemes")) || ["light"];
+async function loadThemeDropdown() {
+    const themesDropdown = document.getElementById("themes");
+    if (!themesDropdown) return;
+    const themeUnlockables = await getThemeUnlockables();
+    themesDropdown.innerHTML = "";
+
+    themeUnlockables._unlockables.forEach(theme => {
+        const a = document.createElement("a");
+        a.textContent = theme.name;
+        a.setAttribute("onclick", `switchTheme('${theme.id}')`);
+        themesDropdown.appendChild(a);
+    });
+    await updateThemeDropdown();
+}
+
+async function updateThemeDropdown() {
+    const themeUnlockables = await getThemeUnlockables();
     const themeLinks = document.querySelectorAll("#themes a");
 
     themeLinks.forEach(link => {
@@ -32,9 +47,9 @@ function updateThemeDropdown() {
 
         if (!theme) return;
 
-        if (unlocked.includes(theme)) {
+        if (themeUnlockables.isUnlocked(theme)) {
             link.classList.remove("locked");
-            link.onclick = () => switchTheme(theme);
+            link.onclick = async () => await switchTheme(theme);
         } else {
             link.classList.add("locked");
             link.onclick = showLockedMessage;
@@ -42,7 +57,7 @@ function updateThemeDropdown() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadTheme();
-    updateThemeDropdown();
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadTheme();
+    await loadThemeDropdown();
 });

@@ -143,8 +143,8 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--column-bg);
     border-radius: var(--radius-2);
     padding: var(--spacing-md);
-    min-height: 30vh;
-    max-height: 85vh;
+    min-height: 30%;
+    max-height: 90%;
 }
 
 /* Task styles */
@@ -190,6 +190,11 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
     color: var(--navbar-link-color);
     column-gap: var(--spacing-1); /* space between label and icon */
+}
+
+i.fa {
+    font-size: inherit;
+    line-height: inherit;
 }
 
 .dropdown-content > a {
@@ -315,7 +320,7 @@ a:hover.locked {
 
 @media (min-width: 576px) {
     .container.points-container {
-        max-width: 300px;
+        max-width: 350px;
         margin-left: auto;
         margin-right: 0;
         padding-left: 1.5rem;

@@ -1,47 +1,77 @@
-function switchFont(font) {
-    const unlockedFonts = JSON.parse(localStorage.getItem("unlockedFonts")) || [];
+let fontStyles = [];
 
-    if (!unlockedFonts.includes(font)) {
+async function switchFont(font) {
+    const fontUnlockables = await getFontUnlockables();
+
+    if (!fontUnlockables.isUnlocked(font)) {
         alert("Font locked! Buy it in the shop.");
         return;
     }
-    // Different font choices
-    let fontFamily;
-    switch (font) {
-        case "segoeUI":
-            fontFamily = "'Segoe UI', sans-serif";
-            break;
-        case "comic":
-            fontFamily = "'Comic Sans MS', cursive, sans-serif";
-            break;
-        case "courier":
-            fontFamily = "'Courier New', monospace";
-            break;
-        case "bangers":
-            fontFamily = "'Bangers', cursive";
-            break;
-        case "robotoSlab":
-            fontFamily = "'Roboto Slab', serif";
-            break;
-        case "pressStart":
-            fontFamily = "'Press Start 2P', cursive";
-            break;
-        default:
-            fontFamily = "inherit";
+
+    const fontItem = fontUnlockables.getItem(font);
+    if (!fontItem) return;
+
+    for (const unlockableStyle of fontStyles) {
+        const keys = Object.keys(unlockableStyle);
+        const target = unlockableStyle.target;
+        for (const key of keys) {
+            if (key === "target") continue;
+            const $targetElement = $(target);
+            if (!$targetElement) continue;
+
+            let containsKey = false;
+            for (const style of fontItem.styles) {
+                if (style.hasOwnProperty(key) && style.target === target) {
+                    $targetElement.css(key, style[key]);
+                    containsKey = true;
+                    break;
+                }
+            }
+            if (!containsKey) {
+                $targetElement.css(key, "");
+            }
+        }
     }
 
-
-    $("body").css("font-family", fontFamily);
     localStorage.setItem("font", font);
 }
 
-function loadFont() {
-    const saved = localStorage.getItem("font");
-    if (saved) switchFont(saved);
+async function getFontStyles() {
+    const fontUnlockables = await getFontUnlockables();
+    for (const unlockable of fontUnlockables._unlockables) {
+        const style = unlockable.styles;
+        for (const unlockableStyle of style) {
+            const target = unlockableStyle.target;
+            if (target !== "html" && target !== "body" && target !== "main") continue;
+            if (!fontStyles.includes(unlockableStyle))
+                fontStyles.push(unlockableStyle);
+        }
+    }
 }
 
-function updateFontDropdown() {
-    const unlocked = JSON.parse(localStorage.getItem("unlockedFonts")) || [];
+async function loadFont() {
+    const saved = localStorage.getItem("font");
+    await getFontStyles();
+    if (saved) await switchFont(saved);
+}
+
+async function loadFontDropdown() {
+    const fontsDropdown = document.getElementById("fontsDropdown");
+    if (!fontsDropdown) return;
+    const fontUnlockables = await getFontUnlockables();
+    fontsDropdown.innerHTML = "";
+
+    fontUnlockables._unlockables.forEach(font => {
+        const a = document.createElement("a");
+        a.textContent = font.name + (font.default ? " (Default)" : "");
+        a.setAttribute("onclick", `switchFont('${font.id}')`);
+        fontsDropdown.appendChild(a);
+    });
+    await updateFontDropdown();
+}
+
+async function updateFontDropdown() {
+    const fontUnlockables = await getFontUnlockables();
     const fontLinks = document.querySelectorAll("#fontsDropdown a");
 
     fontLinks.forEach(link => {
@@ -51,9 +81,9 @@ function updateFontDropdown() {
 
         if (!font) return;
 
-        if (unlocked.includes(font)) {
+        if (fontUnlockables.isUnlocked(font)) {
             link.classList.remove("locked");
-            link.onclick = () => switchFont(font);
+            link.onclick = async () => await switchFont(font);
         } else {
             link.classList.add("locked");
             link.onclick = () => alert("Font locked! Buy it in the shop.");
@@ -61,7 +91,7 @@ function updateFontDropdown() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadFont();
-    updateFontDropdown();
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadFont();
+    await loadFontDropdown();
 });

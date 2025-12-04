@@ -1,5 +1,134 @@
-[
-  {"feature": "dark-mode", "pointsRequired": 100},
-  {"feature": "custom-theme", "pointsRequired": 200},
-  {"feature": "avatar-selection", "pointsRequired": 300}
-]
+{
+    "themes": [
+        {
+            "id": "light",
+            "name": "Light 💡",
+            "default": true
+        },
+        {
+            "id": "dark",
+            "name": "Dark 🌘",
+            "cost": 20
+        },
+        {
+            "id": "winter",
+            "name": "Winter ❄️",
+            "cost": 30
+        },
+        {
+            "id": "spring",
+            "name": "Spring 🌱",
+            "cost": 30
+        },
+        {
+            "id": "summer",
+            "name": "Summer ☀️",
+            "cost": 30
+        },
+        {
+            "id": "fall",
+            "name": "Fall 🍂",
+            "cost": 30
+        }
+    ],
+    "fonts": [
+        {
+            "id": "segoeUI",
+            "name": "Segoe UI",
+            "styles": [
+                {
+                    "target": "body",
+                    "font-family": "'Segoe UI', sans-serif"
+                }
+            ],
+            "default": true
+        },
+        {
+            "id": "comic",
+            "name": "Comic Sans",
+            "cost": 10,
+            "styles": [
+                {
+                    "target": "body",
+                    "font-family": "'Comic Sans MS', 'Comic Sans', cursive"
+                }
+            ]
+        },
+        {
+            "id": "courier",
+            "name": "Courier New",
+            "cost": 10,
+            "styles": [
+                {
+                    "target": "body",
+                    "font-family": "'Courier New', Courier, monospace"
+                },
+                {
+                    "target": "html",
+                    "font-size": "17px"
+                }
+            ]
+        },
+        {
+            "id": "bangers",
+            "name": "Bangers",
+            "cost": 10,
+            "styles": [
+                {
+                    "target": "body",
+                    "font-family": "'Bangers', cursive"
+                }
+            ]
+        },
+        {
+            "id": "robotoSlab",
+            "name": "Roboto Slab",
+            "cost": 10,
+            "styles": [
+                {
+                    "target": "body",
+                    "font-family": "'Roboto Slab', serif"
+                }
+            ]
+        },
+        {
+            "id": "pressStart",
+            "name": "Press Start 2P",
+            "cost": 20,
+            "styles": [
+                {
+                    "target": "body",
+                    "font-family": "'Press Start 2P', cursive"
+                },
+                {
+                    "target": "html",
+                    "font-size": "12px"
+                }
+            ]
+        }
+    ],
+    "avatars": [
+        {
+            "id": "ex-avatar",
+            "name": "ex-avatar",
+            "cost": 10
+        },
+        {
+            "id": "ex2-avatar",
+            "name": "ex2-avatar",
+            "cost": 20
+        }
+    ],
+    "badges": [
+        {
+            "id": "task-master-badge",
+            "name": "Task Master Badge",
+            "cost": 100
+        },
+        {
+            "id": "productivity-pro-badge",
+            "name": "Productivity Pro Badge",
+            "cost": 150
+        }
+    ]
+}
