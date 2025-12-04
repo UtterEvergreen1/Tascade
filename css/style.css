@@ -1,8 +1,5 @@
 /* Root variables for themes and consistent styling */
 :root {
-    /* Fonts */
-    --main-font: 'Segoe UI', Verdana;
-
     /* Colors */
     --bg-color: #f5f7fb;
     --text-color: #111111;
@@ -92,7 +89,6 @@
 /* Global styles */
 body {
     margin: 0;
-    font-family: var(--main-font), sans-serif;
     background-color: var(--bg-color);
 }
 
@@ -183,7 +179,8 @@ h1, h2, h3, h4, h5, h6 {
 .my-navbar .dropdown-btn,
 .my-navbar .home,
 .points-container,
-.shop-section {
+.shop-section,
+.shop-section a {
     height: 100%;
     display: flex;
     align-items: center;
@@ -206,7 +203,6 @@ i.fa {
     color: var(--navbar-link-color);
     font-weight: bold;
     font-size: var(--font-size-xl);
-    letter-spacing: 1px;
     margin: 0 auto; /* Center the title */
 }
 
@@ -233,14 +229,15 @@ button, .points-container {
     outline: none;
     color: var(--navbar-link-color);
     background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    font-family: inherit;
+    margin: 0;
     padding: 0 var(--nav-link-pad-x);
 }
 
 /* Buttons have pointer cursor */
 button {
     cursor: pointer;
+    letter-spacing: inherit;
 }
 
 /* Links have pointer cursor */

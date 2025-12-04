@@ -77,6 +77,10 @@
                 {
                     "target": "body",
                     "font-family": "'Bangers', cursive"
+                },
+                {
+                    "target": "body",
+                    "letter-spacing": "0.1rem"
                 }
             ]
         },

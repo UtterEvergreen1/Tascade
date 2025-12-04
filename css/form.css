@@ -20,7 +20,6 @@
 /* Form heading */
 .form-card h1 {
     margin: 0 0 var(--spacing-md) 0;
-    color: var(--heading-color);
 }
 
 /* Form fields */
@@ -38,7 +37,9 @@
 
 /* Input and select styles */
 input, select {
-    font: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box; /* ensure padding/border stay inside width */
@@ -64,6 +65,11 @@ input:focus, select:focus {
 .input-error {
     border-color: var(--error-border) !important;
     box-shadow: var(--error-ring) !important;
+}
+
+.error-message {
+    color: var(--error-border);
+    margin-top: var(--spacing-1);
 }
 
 /* Form action buttons */
@@ -131,7 +137,7 @@ input:focus, select:focus {
 /* Remove default appearance for select elements */
 select {
     appearance: none;
-    font-family: var(--main-font), sans-serif;
+    cursor: pointer;
 }
 
 /* Enhanced select dropdown styling */

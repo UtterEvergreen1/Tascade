@@ -1,24 +1,26 @@
 // Get form input fields
-const form = document.getElementById("addTaskForm");
-const taskNameInput = document.getElementById("taskName");
-const columnValueInput = document.getElementById("taskColumn");
+const taskNameInput = $("#taskName");
+const taskNameError = $("#taskNameError");
+const columnValueInput = $("#taskColumn");
 
-form.addEventListener("submit", e => {
+$("#addTaskForm").on("submit", e => {
     // Prevent page reload on sumbit new task
     e.preventDefault();
 
-    const name = taskNameInput.value.trim();
+    const name = taskNameInput.val().trim();
     if (!name) {
-        taskNameInput.classList.add("input-error");
-        taskNameInput.setAttribute("aria-invalid", "true");
+        taskNameInput.addClass("input-error");
+        taskNameInput.attr("aria-invalid", "true");
+        taskNameError.removeClass("d-none");
         taskNameInput.focus();
         return;
     }
-    taskNameInput.classList.remove("input-error");
-    taskNameInput.removeAttribute("aria-invalid");
+    taskNameInput.removeClass("input-error");
+    taskNameError.addClass("d-none");
+    taskNameInput.removeAttr("aria-invalid");
 
     // Create new task
-    const task = { text: name, column: columnValueInput.value };
+    const task = { text: name, column: columnValueInput.val() };
     // Load existing tasks from local storage
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     tasks.push(task);
