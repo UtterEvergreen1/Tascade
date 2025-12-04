@@ -1,8 +1,10 @@
+// Get form input fields
 const form = document.getElementById("addTaskForm");
 const taskNameInput = document.getElementById("taskName");
 const columnValueInput = document.getElementById("taskColumn");
 
 form.addEventListener("submit", e => {
+    // Prevent page reload on sumbit new task
     e.preventDefault();
 
     const name = taskNameInput.value.trim();
@@ -15,10 +17,13 @@ form.addEventListener("submit", e => {
     taskNameInput.classList.remove("input-error");
     taskNameInput.removeAttribute("aria-invalid");
 
+    // Create new task
     const task = { text: name, column: columnValueInput.value };
+    // Load existing tasks from local storage
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    window.location.href = "index.html"; // go back to board
+    // Redirect back to task board
+    window.location.href = "index.html";
 });

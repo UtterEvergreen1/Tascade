@@ -15,6 +15,8 @@ function addColumnDragEvents(column) {
             column.classList.remove('drag-over');
         }
     });
+
+    // Handle drop when is task is released over column
     column.addEventListener('drop', () => {
         handleDrop(column);
     });
@@ -24,6 +26,7 @@ function addColumnDragEvents(column) {
 
 }
 
+// Load tasks from local storage
 function renderTasks() {
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     tasks.forEach(task => addTaskToBoard(task.text, task.column));
@@ -35,27 +38,26 @@ function deleteTask(taskElement) {
 }
 
 function addTaskToBoard(text, columnId) {
-    // create a new task element
+    // Create a new task container
     const task = document.createElement('div');
     task.className = 'task';
 
-    // make the task element content
+    // Create the task text span
     const taskText = document.createElement('span');
     taskText.textContent = text;
 
-    // create delete button
+    // Create delete button as a trashcan 
     const deleteButton = document.createElement('i');
     deleteButton.className = 'fa fa-trash delete-btn ms-auto';
     deleteButton.onclick = () => deleteTask(task);
 
-    // append text and delete button to task
     task.appendChild(taskText);
     task.appendChild(deleteButton);
 
-    // append task to the specified column
+    // Append task to the specified column
     document.getElementById(columnId).appendChild(task);
 
-    // add drag events
+    // Make task draggable
     addDragEvents(task);
     addTouchEvents(task);
 }
@@ -68,13 +70,15 @@ function handleDrop(column) {
         column.appendChild(draggedTask);
         updateLocalStorage();
 
+        // +10 points when moving a task to the DONE column
         if (column.id === "done" && oldColumn.id !== "done") {
             points += 10;
             updatePointsDisplay();
             savePoints();
         }
 
-
+        // Remove points if they remove task from the DONE column
+        // Accounts for when a user accidentally drags a task into DONE
         if (oldColumn.id === "done" && column.id !== "done") {
             points -= 10;
             if (points < 0) points = 0;
@@ -87,10 +91,12 @@ function handleDrop(column) {
 function addDragEvents(task) {
     task.setAttribute('draggable', 'true');
 
+    // Store reference to the task being dropped
     task.addEventListener('dragstart', () => {
         draggedTask = task;
     });
 
+    // Clear the reference when drag ends
     task.addEventListener('dragend', () => {
         draggedTask = null;
     });
@@ -137,6 +143,7 @@ function addTouchEvents(task) {
 
 function updateLocalStorage() {
     const tasks = [];
+    // Loop through each column to collect tasks
     columns.forEach(column => {
         column.querySelectorAll('.task').forEach(task => {
             tasks.push({ text: task.textContent, column: column.id });
@@ -145,8 +152,10 @@ function updateLocalStorage() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+// Add drag events on all columns
 columns.forEach(column => {
     addColumnDragEvents(column);
 });
 
+// Initial load of saved tasks
 renderTasks();

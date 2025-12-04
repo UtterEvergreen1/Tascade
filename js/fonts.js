@@ -33,6 +33,7 @@ async function switchFont(font) {
         }
     }
 
+    // Save selected font
     localStorage.setItem("font", font);
 }
 
@@ -75,22 +76,25 @@ async function updateFontDropdown() {
     const fontLinks = document.querySelectorAll("#fontsDropdown a");
 
     fontLinks.forEach(link => {
+        // Extract and match font name from onclick attribute
         const onclickAttr = link.getAttribute("onclick");
         const match = onclickAttr?.match(/'(\w+)'/);
         const font = match?.[1];
 
         if (!font) return;
 
+        // Update the dropdown based on unlocked fonts
         if (fontUnlockables.isUnlocked(font)) {
             link.classList.remove("locked");
             link.onclick = async () => await switchFont(font);
         } else {
             link.classList.add("locked");
-            link.onclick = () => alert("Font locked! Buy it in the shop.");
+            link.onclick = () => showLockedMessage();
         }
     });
 }
 
+// Initial load of font and update of dropdown
 document.addEventListener("DOMContentLoaded", async () => {
     await loadFont();
     await loadFontDropdown();

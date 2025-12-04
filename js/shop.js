@@ -22,11 +22,13 @@ async function handleBuy(itemId, type) {
 
     if (!item) return;
 
+    // Check if enough points
     if (points >= item.cost) {
         points -= item.cost;
         savePoints();
         shopPointsDisplay.textContent = points.toString();
 
+        // Add to unlocked items
         type.unlock(itemId);
 
         // Re-render all categories
@@ -37,6 +39,7 @@ async function handleBuy(itemId, type) {
     }
 }
 
+// Initial render of shop categories
 document.addEventListener("DOMContentLoaded", async () => {
     await renderAllCategories();
 });
