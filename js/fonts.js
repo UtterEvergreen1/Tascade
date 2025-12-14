@@ -78,7 +78,7 @@ async function updateFontDropdown() {
     fontLinks.forEach(link => {
         // Extract and match font name from onclick attribute
         const onclickAttr = link.getAttribute("onclick");
-        const match = onclickAttr?.match(/'(\w+)'/);
+        const match = onclickAttr?.match(/'([\w-]+)'/);
         const font = match?.[1];
 
         if (!font) return;

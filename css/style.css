@@ -189,6 +189,16 @@ h1, h2, h3, h4, h5, h6 {
     column-gap: var(--spacing-1); /* space between label and icon */
 }
 
+main .shop-section {
+    border-radius: var(--radius-2);
+    background-color: var(--btn-bg);
+    border: 1px solid var(--border-color);
+}
+
+main .shop-section:hover {
+    background-color: var(--btn-bg-hover);
+}
+
 i.fa {
     font-size: inherit;
     line-height: inherit;
@@ -257,10 +267,6 @@ a {
 .my-navbar a:hover,
 .my-dropdown:hover .dropdown-btn {
     background-color: var(--navbar-hover-bg);
-}
-
-.shop-section:hover {
-    background-color: var(--btn-secondary-hover-bg);
 }
 
 /* Points have larger font */

@@ -99,6 +99,10 @@
                 {
                     "target": "body",
                     "font-family": "'Brush Script MT', 'cursive'"
+                },
+                {
+                    "target": "html",
+                    "font-size": "22px"
                 }
             ]
         },
