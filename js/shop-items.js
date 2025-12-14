@@ -2,7 +2,7 @@ let shopItemsCache = null;
 
 // read from unlockables.json file
 async function loadShopItems() {
-    const path = "/data/unlockables.json";
+    const path = "data/unlockables.json";
     try {
         const res = await fetch(path);
         if (!res.ok) {
